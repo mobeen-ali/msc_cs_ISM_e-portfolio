@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MSc Information Security Management - e‑Portfolio</title>
+  <meta name="description" content="Public e‑portfolio with week-by-week artefacts linked directly to the GitHub repository." />
+  <style>
+    :root{
+      --bg:#0b0f16; --panel:#0f1521; --muted:#8aa0b5; --text:#e6eef6; --brand:#5da9ff; --brand-2:#7bffdf; --line:#1b2638; --ok:#5fff9b; --warn:#ffd166;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; background:radial-gradient(1200px 600px at 20% -10%, #122134 0%, #0b0f16 55%) fixed; color:var(--text); font:16px/1.5 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1100px; margin:0 auto; padding:24px 20px 80px}
+    header{display:flex; align-items:center; gap:18px; padding:18px 0 10px; position:sticky; top:0; backdrop-filter:saturate(160%) blur(8px); background:linear-gradient(180deg, rgba(11,15,22,.9), rgba(11,15,22,.65) 60%, transparent); z-index:3; border-bottom:1px solid var(--line)}
+    .logo{width:42px; height:42px; border-radius:12px; background:conic-gradient(from 140deg, var(--brand), var(--brand-2)); display:grid; place-items:center; box-shadow:0 0 0 1px #1e3350, 0 10px 30px rgba(0,0,0,.4)}
+    .logo svg{filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
+    h1{font-size:clamp(20px,3vw,28px); margin:0}
+    .sub{color:var(--muted); font-size:14px}
+    .bar{display:flex; gap:10px; margin-left:auto;}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid var(--line); border-radius:12px; background:linear-gradient(180deg,#111827,#0d1421); color:var(--text); cursor:pointer}
+    .btn:hover{border-color:#274061}
+    .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; margin-top:18px}
+    .card{border:1px solid var(--line); background:linear-gradient(180deg,var(--panel),#0c1220); border-radius:16px; padding:16px; position:relative; overflow:hidden}
+    .card:hover{border-color:#264062}
+    .badge{font-size:12px; color:var(--muted); border:1px solid var(--line); padding:2px 8px; border-radius:999px}
+    .title{font-weight:600}
+    .muted{color:var(--muted)}
+    .row{display:flex; align-items:center; justify-content:space-between; gap:10px}
+    .files{margin-top:14px}
+    .file{display:flex; align-items:center; gap:12px; padding:10px 6px; border-radius:10px}
+    .file:hover{background:#0b1323}
+    .file .meta{font-size:12px; color:var(--muted)}
+    .ic{width:24px; height:24px; flex:0 0 24px; display:grid; place-items:center; border-radius:6px; background:#0b1323; border:1px solid var(--line)}
+    .crumbs{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px}
+    .crumbs a,.crumbs span{font-size:14px}
+    .crumbs .sep{opacity:.4}
+    .controls{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
+    input[type="search"]{flex:1; min-width:240px; padding:10px 12px; border-radius:12px; border:1px solid var(--line); background:#0d1421; color:var(--text)}
+    .hint{font-size:13px; color:var(--muted); margin-top:6px}
+    footer{margin-top:40px; color:var(--muted); font-size:13px}
+    .empty{border:1px dashed var(--line); border-radius:16px; padding:26px; text-align:center; color:var(--muted); margin-top:16px}
+    .pill{display:inline-flex; align-items:center; gap:6px; border:1px solid var(--line); padding:6px 10px; border-radius:999px}
+    .right{margin-left:auto}
+    .viewlinks{display:flex; gap:8px; flex-wrap:wrap}
+    .small{font-size:12px}
+    /* README viewer */
+    #readme{margin-top:14px}
+    #readme .head{display:flex; align-items:center; gap:10px; margin-bottom:10px}
+    #readme .name{font-weight:600}
+    #readmeOut{border:1px solid var(--line); border-radius:16px; padding:18px; background:linear-gradient(180deg,var(--panel),#0b1320); overflow:auto}
+    #readmeOut pre{padding:12px; border-radius:10px; border:1px solid var(--line); overflow:auto}
+    #readmeOut table{border-collapse:collapse; width:100%}
+    #readmeOut th,#readmeOut td{border:1px solid var(--line); padding:6px 8px}
+    #readmeOut blockquote{border-left:3px solid #274061; margin:0; padding:8px 12px; color:#c8d6e5; background:#0c1525; border-radius:6px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 17.5v-11c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v11c0 .6-.4 1-1 1H5c-.6 0-1-.4-1-1Z" stroke="white" stroke-opacity=".9"/><path d="M12 14V6.5c0-.6.4-1 1-1h6c.6 0 1 .4 1 1V14c0 .6-.4 1-1 1h-6c-.6 0-1-.4-1-1Z" stroke="white" stroke-opacity=".5"/></svg>
+      </div>
+      <div>
+        <h1>MSc CS Information Security Management - e‑Portfolio</h1>
+        <div class="sub">Week‑by‑week artefacts linked directly to the GitHub repository</div>
+      </div>
+      <div class="bar">
+        <a class="btn" id="githubBtn" target="_blank" rel="noopener">Open repository</a>
+      </div>
+    </header>
+
+    <div class="crumbs" id="breadcrumbs"></div>
+
+    <div class="controls">
+      <input type="search" id="q" placeholder="Filter files… (by name or extension)" aria-label="Filter files" />
+      <button class="btn" id="upBtn" title="Go up one level">⬆︎ Up</button>
+      <div class="pill right"><span id="count">0</span> items</div>
+    </div>
+
+    <div id="intro" class="hint">Tip: Click a Unit (which also represents Weeks) to see its artefacts. “View” opens the file in GitHub; “Raw” downloads it.</div>
+
+    <section class="grid" id="folders"></section>
+    <div id="listing" class="files"></div>
+
+    <!-- Folder README (auto-preview if present) -->
+    <section id="readme" class="card" aria-live="polite" aria-busy="false" style="display:none">
+      <div class="head">
+        <span class="badge">README</span>
+        <span class="name" id="readmeName"></span>
+        <div class="viewlinks right">
+          <a class="btn" id="btnReadmeGit" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" id="btnReadmeRaw" target="_blank" rel="noopener">Raw</a>
+        </div>
+      </div>
+      <div id="readmeOut">This folder has a README.</div>
+    </section>
+
+    <footer>
+      Built by <strong>Mobeen Ali</strong> - one‑page e‑portfolio powered by GitHub Pages. &copy; 2025
+    </footer>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
+
+<script>
+(function(){
+  // === Minimal config (edit if you fork) ===
+  const owner = 'mobeen-ali';
+  const repo  = 'msc_cs_net-sec_e-portfolio';
+  const basePath = ''; // e.g. 'weeks' if you keep week folders inside /weeks
+  // ========================================
+
+  const $folders = document.getElementById('folders');
+  const $listing = document.getElementById('listing');
+  const $crumbs  = document.getElementById('breadcrumbs');
+  const $count   = document.getElementById('count');
+  const $q       = document.getElementById('q');
+  const $up      = document.getElementById('upBtn');
+  const $ghBtn   = document.getElementById('githubBtn');
+  const $intro   = document.getElementById('intro');
+  const $readme  = document.getElementById('readme');
+  const $readmeOut = document.getElementById('readmeOut');
+  const $readmeName = document.getElementById('readmeName');
+  const $btnReadmeGit = document.getElementById('btnReadmeGit');
+  const $btnReadmeRaw = document.getElementById('btnReadmeRaw');
+
+  let defaultBranch = 'main';
+  let state = { path: new URLSearchParams(location.search).get('path') || '' };
+
+  $ghBtn.href = `https://github.com/${owner}/${repo}`;
+
+  function setQuery(path){
+    const u = new URL(location.href);
+    if(path) u.searchParams.set('path', path); else u.searchParams.delete('path');
+    history.replaceState(null, '', u.toString());
+  }
+
+  function crumbs(path){
+    const segs = (path||'').split('/').filter(Boolean);
+    $crumbs.innerHTML = '';
+    const home = document.createElement('a');
+    home.textContent = 'Home';
+    home.href = '#'; home.onclick = (e)=>{e.preventDefault(); navigate('');}
+    $crumbs.append(home);
+    if(segs.length===0) return;
+    $crumbs.append(sep());
+    let acc = '';
+    segs.forEach((s,i)=>{
+      acc += (i?'/':'') + s;
+      if(i===segs.length-1){
+        const span = document.createElement('span');
+        span.textContent = s;
+        $crumbs.append(span);
+      } else {
+        const a = document.createElement('a');
+        a.textContent = s; a.href = '#';
+        a.onclick = (e)=>{e.preventDefault(); navigate(acc)};
+        $crumbs.append(a); $crumbs.append(sep());
+      }
+    });
+    function sep(){ const s=document.createElement('span'); s.className='sep'; s.textContent='›'; return s }
+  }
+
+  async function getJSON(u){
+    const r = await fetch(u, {headers:{'Accept':'application/vnd.github+json'}});
+    if(!r.ok) throw new Error(`GitHub API error ${r.status}`);
+    return r.json();
+  }
+
+  async function init(){
+    try{
+      const info = await getJSON(`https://api.github.com/repos/${owner}/${repo}`);
+      defaultBranch = info.default_branch || 'main';
+    }catch{ /* fallback main */ }
+    navigate(state.path);
+  }
+
+  async function navigate(path){
+    state.path = path || '';
+    setQuery(state.path);
+    crumbs(state.path);
+    $q.value = '';
+    $listing.innerHTML = '';
+    $folders.innerHTML = '';
+    hideReadme();
+
+    const pathToLoad = [basePath, state.path].filter(Boolean).join('/');
+
+    // If no path selected, show Week/Unit folders at the current base
+    if(!state.path){
+      $intro.style.display = '';
+      const items = await getJSON(`https://api.github.com/repos/${owner}/${repo}/contents/${encodeURIComponent(pathToLoad)}?ref=${defaultBranch}`);
+      const dirs = items.filter(x=>x.type==='dir');
+      // Prefer folders that look like Week/Unit
+      const weekish = dirs.filter(d=>/^(week|unit|u\d+|w\d+)/i.test(d.name)).sort(natural);
+      const other   = dirs.filter(d=>!weekish.includes(d)).sort(natural);
+      renderFolderCards(weekish.length?weekish:dirs);
+      $count.textContent = (weekish.length?weekish:dirs).length;
+      // Show root README if present
+      renderReadmeIfAny(items, pathToLoad);
+      $up.disabled = true;
+      return;
+    }
+
+    $intro.style.display = 'none';
+    // Otherwise list files/folders inside selected path
+    try{
+      const items = await getJSON(`https://api.github.com/repos/${owner}/${repo}/contents/${encodeURIComponent(pathToLoad)}?ref=${defaultBranch}`);
+      renderListing(items.sort(natural));
+      renderReadmeIfAny(items, pathToLoad);
+      $count.textContent = items.length;
+      $up.disabled = state.path.split('/').filter(Boolean).length===0;
+    }catch(err){
+      $listing.innerHTML = `<div class="empty">Could not load folder <code>${escapeHtml(state.path)}</code>. Make sure it exists on <a href="https://github.com/${owner}/${repo}">GitHub</a>.</div>`;
+      $count.textContent = 0;
+    }
+  }
+
+  function renderFolderCards(dirs){
+    if(dirs.length===0){
+      $folders.innerHTML = `<div class="empty">No week folders found yet. Create folders like <code>Week_01</code> or <code>Unit_1</code> in the repository.</div>`;
+      return;
+    }
+    $folders.innerHTML = '';
+    dirs.forEach(d=>{
+      const card = document.createElement('article'); card.className='card';
+      card.innerHTML = `
+        <div class="row">
+          <div>
+            <div class="badge">Folder</div>
+            <div class="title" style="margin-top:6px">${escapeHtml(d.name)}</div>
+            <div class="muted small">${escapeHtml(relPath(d.path))}</div>
+          </div>
+          <div class="viewlinks">
+            <a class="btn" href="#" data-path="${escapeAttr(nextPath(d.name))}">Open</a>
+            <a class="btn" target="_blank" rel="noopener" href="https://github.com/${owner}/${repo}/tree/${defaultBranch}/${encodeURIComponent(d.path)}">GitHub</a>
+          </div>
+        </div>`;
+      card.querySelector('[data-path]').onclick = (e)=>{e.preventDefault(); navigate(nextPath(d.name));};
+      $folders.append(card);
+    });
+  }
+
+  function renderListing(items){
+    $listing.innerHTML = '';
+    if(!items || items.length===0){
+      $listing.innerHTML = `<div class="empty">This folder is empty. Add artefacts (PDF, DOCX, PNG, etc.) to this week folder.</div>`;
+      return;
+    }
+
+    const list = document.createElement('div');
+    list.setAttribute('role','list');
+
+    items.forEach(x=>{
+      const isDir = x.type==='dir';
+      const el = document.createElement('div'); el.className='file'; el.setAttribute('role','listitem');
+      el.innerHTML = `
+        <div class="ic">${isDir?icons.folder:icons.file}</div>
+        <div style="flex:1 1 auto; min-width:0">
+          <div class="row">
+            <a href="#" class="title" ${isDir?`data-path="${escapeAttr(nextPath(x.name))}"`:`data-open-file="${escapeAttr(x.path)}"`}>${escapeHtml(x.name)}</a>
+            <div class="viewlinks">
+              ${isDir
+                ? `<a class="btn" href="#" data-path="${escapeAttr(nextPath(x.name))}">Open</a>
+                   <a class="btn" target="_blank" rel="noopener" href="https://github.com/${owner}/${repo}/tree/${defaultBranch}/${encodeURIComponent(x.path)}">GitHub</a>`
+                : `<a class="btn" target="_blank" rel="noopener" href="https://github.com/${owner}/${repo}/blob/${defaultBranch}/${encodeURIComponent(x.path)}">View</a>
+                   <a class="btn" target="_blank" rel="noopener" href="https://raw.githubusercontent.com/${owner}/${repo}/${defaultBranch}/${encodeURIComponent(x.path)}">Raw</a>`}
+            </div>
+          </div>
+          <div class="meta">${isDir?'Folder':'File'} • ${(x.size||0).toLocaleString()} bytes</div>
+        </div>`;
+      if(isDir){
+        el.querySelectorAll('[data-path]').forEach(a=>a.onclick=(e)=>{e.preventDefault(); navigate(nextPath(x.name))});
+      } else {
+        el.querySelector('[data-open-file]').onclick = (e)=>{e.preventDefault(); window.open(`https://github.com/${owner}/${repo}/blob/${defaultBranch}/${encodeURIComponent(x.path)}`, '_blank')};
+      }
+      list.append(el);
+    });
+
+    $listing.append(list);
+  }
+
+  // README auto-render if present
+  async function renderReadmeIfAny(items, pathToLoad){
+    try{
+      const readme = (items||[]).find(x => x && x.type === 'file' && /^readme(\.|$)/i.test(x.name));
+      if(!readme){ hideReadme(); return; }
+      if($readme) $readme.style.display = '';
+      if($readme) $readme.setAttribute('aria-busy','true');
+      if($readmeName) $readmeName.textContent = readme.name || 'README.md';
+
+      const repoPath = readme.path;
+      const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${defaultBranch}/${encodeURIComponent(repoPath)}`;
+      if($btnReadmeGit) $btnReadmeGit.href = `https://github.com/${owner}/${repo}/blob/${defaultBranch}/${encodeURIComponent(repoPath)}`;
+      if($btnReadmeRaw) $btnReadmeRaw.href = rawUrl;
+
+      const res = await fetch(rawUrl);
+      if(!res.ok) throw new Error('Failed to fetch README');
+      const md = await res.text();
+
+      const untrusted = marked.parse(md, {mangle:false, headerIds:true});
+      const safe = DOMPurify.sanitize(untrusted, {USE_PROFILES:{html:true}});
+      if($readmeOut) $readmeOut.innerHTML = safe;
+
+      rewriteReadmeLinks($readmeOut, repoPath);
+      try{ hljs.highlightAll(); }catch{}
+    }catch(err){
+      if($readmeOut) $readmeOut.innerHTML = '<div class="empty">Could not render README for this folder.</div>';
+    }finally{
+      if($readme) $readme.setAttribute('aria-busy','false');
+    }
+  }
+  function hideReadme(){ if($readme){ $readme.style.display = 'none'; } }
+  function rewriteReadmeLinks(container, repoPath){
+    if(!container) return;
+    const baseDir = dirOf(repoPath || '');
+    container.querySelectorAll('a[href]').forEach(a => {
+      const href = a.getAttribute('href');
+      if(!href) return;
+      if(href.startsWith('#')) return;
+      if(href.startsWith('http://') || href.startsWith('https://')) return;
+      const resolved = joinPath(baseDir, href);
+      a.href = `https://github.com/${owner}/${repo}/blob/${defaultBranch}/${encodeURIComponent(resolved)}`;
+      a.target = '_blank';
+      a.rel = 'noopener';
+    });
+    container.querySelectorAll('img[src]').forEach(img => {
+      const src = img.getAttribute('src');
+      if(!src) return;
+      if(src.startsWith('http://') || src.startsWith('https://')) return;
+      const resolved = joinPath(baseDir, src);
+      img.src = `https://raw.githubusercontent.com/${owner}/${repo}/${defaultBranch}/${encodeURIComponent(resolved)}`;
+    });
+  }
+
+  // Search filter (client-side by name)
+  $q.addEventListener('input', ()=>{
+    const term = $q.value.trim().toLowerCase();
+    $listing.querySelectorAll('.file').forEach(el=>{
+      const name = el.querySelector('.title')?.textContent?.toLowerCase() || '';
+      el.style.display = !term || name.includes(term) ? '' : 'none';
+    });
+  });
+
+  // Up one level
+  $up.addEventListener('click', ()=>{
+    if(!state.path) return;
+    const segs = state.path.split('/').filter(Boolean); segs.pop();
+    navigate(segs.join('/'));
+  });
+
+  // Helpers
+  function nextPath(name){ return [state.path, name].filter(Boolean).join('/') }
+  function relPath(p){ return p.replace(/^\/?/,'') }
+  function natural(a,b){ return a.name.localeCompare(b.name, undefined, {numeric:true, sensitivity:'base'}) }
+  function escapeHtml(s){ return (s||'').replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c])) }
+  function escapeAttr(s){ return escapeHtml(s).replace(/"/g,'&quot;') }
+  // helpers for resolving relative links in README
+  function dirOf(p){ const a=(p||'').split('/'); a.pop(); return a.join('/'); }
+  function joinPath(base, rel){
+    const stack = (base||'').split('/').filter(Boolean);
+    (rel||'').split('/').forEach(seg=>{
+      if(!seg || seg==='.') return;
+      if(seg==='..') stack.pop(); else stack.push(seg);
+    });
+    return stack.join('/');
+  }
+
+  const icons={
+    folder:`<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 7.5a2 2 0 0 1 2-2h4.6c.5 0 1 .3 1.3.7l.8 1.1c.3.4.8.7 1.3.7H18.5a2 2 0 0 1 2 2v7.5a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2v-8z" stroke="#7bffdf"/></svg>`,
+    file:`<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 4.5h7.2c.3 0 .6.1.8.3l3.7 3.7c.2.2.3.5.3.8v9.2a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2v-12a2 2 0 0 1 2-2z" stroke="#5da9ff"/></svg>`
+  };
+
+  init();
+})();
+</script>
+  
+  <!-- Markdown inline preview loader (adds in‑page preview for .md files) -->
+  <script>
+  (function(){
+    // Add minimal CSS for the viewer
+    function addStyle(){
+      if(document.getElementById('md-style')) return;
+      var s=document.createElement('style'); s.id='md-style';
+      s.textContent = '#viewer{margin-top:20px;display:none}#viewer .head{display:flex;align-items:center;gap:10px;margin-bottom:10px}#viewer .name{font-weight:600}#mdOut{border:1px solid #1b2638;border-radius:16px;padding:18px;background:linear-gradient(180deg,#0f1521,#0b1320);max-height:70vh;overflow:auto}#mdOut pre{padding:12px;border:1px solid #1b2638;border-radius:10px;overflow:auto}#mdOut table{border-collapse:collapse;width:100%}#mdOut th,#mdOut td{border:1px solid #1b2638;padding:6px 8px}#mdOut blockquote{border-left:3px solid #274061;margin:0;padding:8px 12px;color:#c8d6e5;background:#0c1525;border-radius:6px}';
+      document.head.appendChild(s);
+    }
+
+    // Create viewer section if missing
+    function ensureViewer(){
+      var v=document.getElementById('viewer');
+      if(v) return v;
+      addStyle();
+      v=document.createElement('section'); v.id='viewer'; v.className='card'; v.setAttribute('aria-live','polite');
+      v.innerHTML = '<div class="head">\
+        <span class="badge">Markdown Preview</span>\
+        <span class="name" id="mdName"></span>\
+        <span class="muted small" id="mdPath"></span>\
+        <div class="viewlinks right">\
+          <a class="btn" id="btnOpenGit" target="_blank" rel="noopener">GitHub</a>\
+          <a class="btn" id="btnOpenRaw" target="_blank" rel="noopener">Raw</a>\
+          <button class="btn" id="btnClose">Close</button>\
+        </div>\
+      </div>\
+      <div id="mdOut">Select a Markdown file to preview…</div>';
+      var wrap=document.querySelector('.wrap')||document.body; wrap.appendChild(v);
+      document.getElementById('btnClose').addEventListener('click', function(){ v.style.display='none'; });
+      return v;
+    }
+
+    // Load marked + DOMPurify once
+    var libsLoaded=false, libsLoading=false, libQueue=[];
+    function readyLibs(cb){
+      if(libsLoaded) return cb();
+      libQueue.push(cb);
+      if(libsLoading) return; libsLoading=true;
+      var left=2; function done(){ if(--left===0){ libsLoaded=true; libsLoading=false; libQueue.splice(0).forEach(function(f){try{f();}catch(e){}}); } }
+      var m=document.createElement('script'); m.src='https://cdn.jsdelivr.net/npm/marked/marked.min.js'; m.onload=done; document.head.appendChild(m);
+      var d=document.createElement('script'); d.src='https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js'; d.onload=done; document.head.appendChild(d);
+    }
+
+    function encPath(p){ return (p||'').split('/').filter(function(x){return x.length>0}).map(encodeURIComponent).join('/'); }
+    function dirOf(p){ var a=(p||'').split('/'); a.pop(); return a.join('/'); }
+    function joinPath(base, rel){
+      var stack=(base||'').split('/').filter(Boolean);
+      (rel||'').split('/').forEach(function(seg){ if(!seg||seg==='.') return; if(seg==='..') stack.pop(); else stack.push(seg); });
+      return stack.join('/');
+    }
+
+    function rawHrefFromRow(a){
+      var row = a.closest('.row'); if(!row) return null;
+      var raw = Array.from(row.querySelectorAll('.viewlinks a')).find(function(b){ return b.href && b.href.indexOf('raw.githubusercontent.com')>-1; });
+      return raw ? raw.href : null;
+    }
+
+    function ownerRepoFromBtn(){
+      var btn=document.getElementById('githubBtn'); if(!btn) return {owner:'',repo:''};
+      try{ var u=new URL(btn.href); var parts=u.pathname.split('/'); return {owner:parts[1]||'', repo:parts[2]||''}; }catch(e){ return {owner:'',repo:''}; }
+    }
+
+    function rewriteLinksAndImages(container, repoPath, owner, repo, branch){
+      var baseDir = dirOf(repoPath);
+      Array.from(container.querySelectorAll('a[href]')).forEach(function(a){
+        var href=a.getAttribute('href');
+        if(!href || href[0]==='#' || href.indexOf('http://')===0 || href.indexOf('https://')===0) return;
+        var resolved = joinPath(baseDir, href);
+        a.href = 'https://github.com/'+owner+'/'+repo+'/blob/'+branch+'/'+encPath(resolved);
+        a.target = '_blank'; a.rel='noopener';
+      });
+      Array.from(container.querySelectorAll('img[src]')).forEach(function(img){
+        var src=img.getAttribute('src');
+        if(!src || src.indexOf('http://')===0 || src.indexOf('https://')===0) return;
+        var resolved = joinPath(baseDir, src);
+        img.src = 'https://raw.githubusercontent.com/'+owner+'/'+repo+'/'+branch+'/'+encPath(resolved);
+      });
+    }
+
+    function openMarkdown(repoPath, displayName, rowAnchor){
+      var v=ensureViewer(); v.style.display='';
+      var mdOut=document.getElementById('mdOut');
+      var mdName=document.getElementById('mdName');
+      var mdPath=document.getElementById('mdPath');
+      var btnGit=document.getElementById('btnOpenGit');
+      var btnRaw=document.getElementById('btnOpenRaw');
+      mdOut.textContent='Loading…'; mdName.textContent=displayName||repoPath.split('/').pop(); mdPath.textContent=' • '+repoPath;
+
+      // derive owner/repo/branch
+      var or=ownerRepoFromBtn(); var owner=or.owner, repo=or.repo;
+      var rawHref = rawHrefFromRow(rowAnchor||document.body);
+      var branch='main';
+      if(rawHref){
+        try{ var p=new URL(rawHref).pathname.split('/'); branch=p[5]||'main'; }catch(e){ branch='main'; }
+      } else {
+        // try blob link in same row
+        var row = (rowAnchor||document.body).closest ? (rowAnchor.closest('.row')) : null;
+        var blob = row ? Array.from(row.querySelectorAll('.viewlinks a')).find(function(b){ return b.href && b.href.indexOf('/blob/')>-1; }) : null;
+        if(blob){ try{ var bp=new URL(blob.href).pathname.split('/'); var bi=bp.indexOf('blob'); branch = (bi>-1 && bp[bi+1]) ? bp[bi+1] : 'main'; }catch(e){} }
+      }
+      var rawUrl = rawHref || ('https://raw.githubusercontent.com/'+owner+'/'+repo+'/'+branch+'/'+encPath(repoPath));
+      btnGit.href = 'https://github.com/'+owner+'/'+repo+'/blob/'+branch+'/'+encPath(repoPath);
+      btnRaw.href = rawUrl;
+
+      readyLibs(function(){
+        fetch(rawUrl).then(function(r){ if(!r.ok) throw new Error('fetch failed'); return r.text(); })
+          .then(function(md){
+            var html = window.marked.parse(md, {mangle:false, headerIds:true});
+            var safe = window.DOMPurify.sanitize(html, {USE_PROFILES:{html:true}});
+            mdOut.innerHTML = safe;
+            rewriteLinksAndImages(mdOut, repoPath, owner, repo, branch);
+          })
+          .catch(function(){ mdOut.innerHTML = '<div class="empty">Could not render Markdown. You can still <a target="_blank" rel="noopener" href="'+rawUrl+'">open the raw file</a>.</div>'; });
+      });
+    }
+
+    function enhance(){
+      Array.from(document.querySelectorAll('#listing .file a.title[data-open-file]')).forEach(function(a){
+        var name=(a.textContent||'').toLowerCase();
+        if(name.endsWith('.md') || name.endsWith('.markdown')){
+          a.onclick = function(e){ e.preventDefault(); openMarkdown(a.getAttribute('data-open-file'), a.textContent, a); };
+          var links = a.closest('.row') ? a.closest('.row').querySelectorAll('.viewlinks a') : [];
+          Array.from(links).forEach(function(btn){
+            if(btn.textContent && btn.textContent.trim()==='View'){
+              btn.textContent='Preview'; btn.href='#';
+              btn.onclick = function(e){ e.preventDefault(); openMarkdown(a.getAttribute('data-open-file'), a.textContent, a); };
+            }
+          });
+        }
+      });
+    }
+
+    // Observe listing for changes (navigating folders re-renders it)
+    var listing=document.getElementById('listing');
+    if(listing){
+      var obs=new MutationObserver(function(){ enhance(); });
+      obs.observe(listing, {childList:true, subtree:true});
+    }
+    // Also run once at start
+    enhance();
+  })();
+  </script>
+</body>
+</html>
