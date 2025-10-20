@@ -1,186 +1,174 @@
-# Pampered Pets Attack Tree Analyzer
+# Attack Tree Analyzer — Pampered Pets (Unit 6)
 
-This repository contains a small, production‑ready Flask application
-designed to analyse attack trees/graphs for an MSc assignment.  An
-attack tree is a hierarchical model that expresses how a malicious
-outcome (the *top event*) can be achieved by combining simpler
-sub‑events.  Each internal node is either an **AND** node (all
-children must occur) or an **OR** node (any child can occur); leaf
-nodes carry an estimated probability of occurrence and an impact value.
+A small Flask app to parse, analyze, and visualize **attack‑tree** models for the Pampered Pets SME scenario. It supports YAML/JSON/XML, lets you edit leaf probabilities and impacts in the browser, runs a one‑click sensitivity check, and exports updated specs and images.
 
-The application accepts attack tree specifications in **YAML**, **JSON**
-or **XML** formats, visualises the resulting tree, allows you to edit
-leaf probabilities and impacts, computes aggregated metrics, and
-provides a simple sensitivity analysis tool.  Two demo scenarios
-representing pre‑digital and post‑digital retail environments are
-included under `data/`.
+---
 
-## Installation & Running
+## ✨ Features
 
-1. **Clone** the repository and navigate into the project directory:
+- **Load demos** (Pre‑Digital and Post‑Digital trees) or **Upload** your own spec.
+- **Browser editing** of leaf inputs with validation (`prob ∈ [0,1]`, `impact ≥ 0`).
+- **KPIs**: top‑event probability `P(top)` and **Expected Loss** `E[L]`.
+- **Sensitivity analysis** (implemented): multiply one leaf’s **probability** by a factor `m`; value is **clamped to 1.0**. Preview results then **Apply**.
+- **Visualization**: renders a PNG of the tree (Graphviz if available, else a fallback layout) to `app/static/outputs/`.
+- **Export**: download the **updated YAML** spec and the latest **PNG** image.
+- **Format‑agnostic parser**: YAML/JSON/XML normalized to a single internal structure.
+- **Tests + Linting**: basic unit tests for parsing/logic; ruff for style.
 
-   ```bash
-   git clone <this-repo> pampered-pets-attacks
-   cd pampered-pets-attacks
-   ```
+---
 
-2. **Install** the dependencies using Python 3.11.  It is
-   recommended to do this in a virtual environment:
+## 🗂 Project layout
 
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   pip install -r requirements.txt
-   ```
+```
+pampered-pets-attacks_final/
+├─ app/
+│  ├─ __init__.py        # create_app() factory, Jinja helpers
+│  ├─ routes.py          # upload, analyze, sensitivity, downloads
+│  ├─ model.py           # parsing + P(top) + E[L] + top contributors
+│  ├─ viz.py             # PNG rendering to static/outputs/
+│  ├─ templates/         # base.html, index.html, analyze.html
+│  └─ static/            # css + generated outputs
+├─ data/                 # demo specs: pre_digital.yaml, post_digital.yaml
+├─ screenshots/          # figures for the report/README
+├─ tests/                # test_parser.py, test_logic.py
+├─ requirements.txt
+├─ ruff.toml
+├─ Makefile
+└─ run.py
+```
 
-3. **Run** the application.  The Flask development server listens on
-   port 5000 by default.  The entrypoint is `run.py` which constructs
-   the app via an application factory:
+---
 
-   ```bash
-   flask --app run run
-   # or equivalently
-   python run.py
-   ```
+## ▶️ Quick start
 
-4. **Open** your browser and navigate to `http://localhost:5000` to
-   upload a specification or load a demo scenario.
-
-## Specification Schema
-
-An attack tree specification is a single object with the following
-keys:
-
-| Key      | Type                         | Description                                               |
-|---------:|:-----------------------------|:----------------------------------------------------------|
-| `id`     | string                       | Identifier of the top event (root).                       |
-| `label`  | string                       | Human‑readable label for the root.                        |
-| `type`   | `AND` / `OR`                 | Node type for the root.                                   |
-| `children` | list of strings             | Identifiers of the root's immediate children.             |
-| `nodes`  | sequence of node objects     | Definitions of all other nodes (including leaves).        |
-
-Each node object in the `nodes` array contains at minimum an `id`,
-`label` and `type`.  For internal nodes (`AND` or `OR`) a `children`
-list must be present.  For leaf nodes (`LEAF`) optional `prob` and
-`impact` fields may appear; if absent they default to `null`.  The
-internal representation normalises all nodes so that every node has
-``id``, ``label``, ``type``, ``children`` (empty for leaves),
-``prob`` and ``impact``.
-
-## Aggregation Formulas
-
-### Probability of the top event
-
-The probability of an internal node is derived from its children via
-well‑known rules:
-
-* **AND node**: the node occurs only if *all* children occur, so
-  \(P_{AND} = \prod_i P_i\).
-* **OR node**: the node occurs if *any* child occurs.  Equivalently
-  the node does *not* occur only if *none* of the children occur, so
-  \(P_{OR} = 1 - \prod_i (1 - P_i)\).
-
-Leaf nodes use the `prob` value supplied by the user.  If any leaf
-lacks a probability the tool will prompt for input before displaying
-aggregated results.
-
-### Expected Loss
-
-The expected loss is the sum of each leaf's probability multiplied by
-its impact:
-
-\[\mathrm{E}[L] = \sum_{\text{leaf}} P_{\text{leaf}} \times \mathrm{impact}_{\text{leaf}}\]
-
-Here `impact` is user‑provided and represents the monetary or utility
-loss associated with that leaf event.  Missing values will trigger
-validation messages.
-
-### Top Contributors
-
-To identify which leaf nodes drive the greatest expected loss, the
-tool computes \(P \times \mathrm{impact}\) for each leaf and returns
-the top three values in descending order.
-
-## Sensitivity Analysis
-
-A simple sensitivity helper allows you to explore how the top event
-probability and expected loss change when you scale a single leaf's
-probability by a user‑specified multiplier.  The modified values are
-displayed without altering the underlying model; you may choose to
-"Apply" the results to update the leaf permanently.  Multipliers are
-clamped so that probabilities never exceed 1.0.
-
-## RTO/RPO and Impact Assumptions
-
-Recovery Time Objective (RTO) and Recovery Point Objective (RPO) are
-business continuity metrics that guide how long a service can be down
-and how much data loss is tolerable.  In the provided demo scenarios
-the **impact** values are left unspecified for you to populate based
-on assumed RTO/RPO thresholds: higher impacts correspond to longer
-outages or more severe data loss.  For example, relying on manual
-spreadsheets may lengthen the time to restore operations compared to a
-cloud‑hosted e‑commerce platform.  Similarly, hosted or redirect
-payment integrations reduce PCI scope but residual risks such as
-SQL injection (OWASP A1) or cross‑site scripting (OWASP A7) still need
-consideration.  See the OWASP Top 10 and PCI DSS Self‑Assessment
-Questionnaire A for further reading.
-
-## Running Tests and Linting
-
-Unit tests live in the `tests/` directory and cover the core logic
-functions.  To run them use:
+> Requires **Python 3.10+**.
 
 ```bash
+# 1) Create & activate a virtual environment
+python -m venv .venv
+
+# Windows
+.venv\Scripts\activate
+# macOS/Linux
+# source .venv/bin/activate
+
+# 2) Install deps
+pip install -r requirements.txt
+
+# 3) Run (pick one)
+# a) Flask dev server via factory
+set FLASK_APP=app:create_app   # (Windows)
+flask run --reload
+# macOS/Linux:
+# export FLASK_APP=app:create_app && flask run --reload
+
+# b) Convenience script
+python run.py
+```
+
+Open http://localhost:5000 and **Upload** a spec or **Load Pre/Post Demo**.
+
+---
+
+## 🧮 What the app computes
+
+**Node semantics**
+
+- **AND**:  $P_{\text{AND}} = \prod_j P(\text{child}_j)$
+- **OR**:   $P_{\text{OR}} = 1 - \prod_j (1 - P(\text{child}_j))$
+
+**Top event**
+
+- Apply the same AND/OR rules from leaves to the **root** to get $P(\text{top})$.
+
+**Expected monetary loss**
+
+- $\mathbb{E}[L] = \sum_{i \in \text{leaves}} p_i \; I_i$
+
+**Sensitivity (as implemented in the app)**
+
+- Pick a **leaf** $k$ and a multiplier $m$. The app uses  
+  $p'_k = \min(1,\, m\, p_k)$  
+  Then it recomputes $P(\text{top})$ and $\mathbb{E}[L]$. (Impact-side scaling is shown in the UI help for completeness, but the current implementation **modifies probability only**.)
+
+---
+
+## 📄 Spec format (YAML/JSON/XML)
+
+All formats are normalized to:
+```yaml
+id: <root-id>
+label: <root-label>
+type: AND|OR|LEAF
+children: [child-id, ...]
+nodes:
+  - { id, label, type, children?, prob?, impact? }
+```
+
+**Minimal YAML example**
+```yaml
+id: root
+label: Business loss at Pampered Pets
+type: OR
+children: [op_risk, cyber]
+nodes:
+  - { id: op_risk, label: Operational risks, type: AND, children: [power_out, hdd_fail] }
+  - { id: cyber,   label: Cyber risks,       type: OR,  children: [fd_ransom, weak_cfg] }
+  - { id: power_out, label: Power outage, type: LEAF, prob: 0.30, impact: 8000 }
+  - { id: hdd_fail,  label: Old HDD fails, type: LEAF, prob: 0.01, impact: 12000 }
+  - { id: fd_ransom, label: Ransomware,   type: LEAF, prob: 0.50, impact: 180000 }
+  - { id: weak_cfg,  label: Weak Wi‑Fi,   type: LEAF, prob: 0.60, impact: 60000 }
+```
+
+**Validation rules**
+- `prob` must be in `[0,1]`; `impact` must be `≥ 0`.
+- All `children` must reference existing node `id`s.
+- Exactly one node acts as the **root** (`id` in the top‑level fields).
+
+---
+
+## 🧭 Using the UI
+
+1. **Home to Upload & Analyze**: choose `.yaml/.yml/.json/.xml` or click **Load Pre/Post Demo**.
+2. **Edit leaves**: update `prob` and `impact` inline, click **Recalculate** to see KPIs.
+3. **Sensitivity**: select a leaf + multiplier `m` → **Run Sensitivity** → **Apply** to persist.
+4. **Visualization**: the tree PNG is regenerated on analyze; files are saved in `app/static/outputs/`.
+5. **Download**: get the **Updated Spec (YAML)** and the **PNG** from the analyze page.
+
+---
+
+## 🧪 Tests & linting
+
+```bash
+# Run unit tests
 pytest -q
+
+# Lint (ruff)
+ruff check .
 ```
 
-Linting is enforced via **ruff**.  The configuration in `ruff.toml`
-enables common checks for code style and correctness.  Run:
+Logic is covered by `tests/test_parser.py` and `tests/test_logic.py`.
 
-```bash
-ruff .
-```
+---
 
-Alternatively a `Makefile` is provided with convenient targets:
+## 🖼 Screenshots
 
-```bash
-make install   # install dependencies
-make lint      # run linter
-make test      # execute unit tests
-make run       # start the development server
-```
+- `./screenshots/pre-digital-attack-tree.png`
+- `./screenshots/post-digital-attack-tree.png`
+- `./screenshots/pre-digital-calculation-python-application-ui.png`
+- `./screenshots/post-digital-calculation-python-application-ui.png`
 
-## Directory Structure
+---
 
-The project is organised as follows:
+## 🔎 Notes & assumptions
 
-```
-pampered-pets-attacks/
-  app/            # Flask application package (routing, logic, visualisation)
-  data/           # Demo YAML specifications
-  static/         # Static assets (CSS, outputs)
-  templates/      # Jinja2 templates
-  tests/          # Unit tests for parsing and computation
-  docs/screens/   # Placeholder for screenshots (empty)
-  run.py          # Application entrypoint
-  requirements.txt# Python dependencies with pinned versions
-  ruff.toml       # Linter configuration
-  README.md       # This document
-```
+- **Independence assumption**: leaf events are independent unless modeled otherwise.
+- **Graphviz optional**: if not installed, the app falls back to a non‑Graphviz layout.
+- **YAML export**: the server serializes in‑memory and streams as `text/yaml`.
+- **Data sources**: the demo specs live in `data/pre_digital.yaml` and `data/post_digital.yaml` and can be edited during analysis.
 
-## Notes and References
+---
 
-* **OWASP Top 10** – The Open Web Application Security Project
-  maintains a list of the most critical web application risks.  See
-  the [2021 Top 10](https://owasp.org/www-project-top-ten/) for
-  details on SQL injection, cross‑site scripting and other
-  vulnerabilities.
-* **PCI DSS SAQ A** – The Payment Card Industry Data Security
-  Standard Self‑Assessment Questionnaire A applies to merchants that
-  outsource cardholder data functions to third parties.  Hosted
-  payment forms reduce PCI scope but do not eliminate all risk.
+## 📦 License
 
-The attack tree model implemented here is intentionally simple and
-lives entirely in memory; it is not intended to handle extremely
-large graphs.  Contributions and suggestions to improve the tool are
-welcome.
+Academic/learning use. Replace with your license if publishing.
