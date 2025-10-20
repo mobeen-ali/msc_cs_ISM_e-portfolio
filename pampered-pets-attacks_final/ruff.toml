@@ -1,0 +1,15 @@
+# ruff.toml (no [tool.ruff] header here)
+line-length = 100
+target-version = "py311"
+exclude = ["venv", "static/outputs", "__pycache__"]
+
+[lint]
+# Use "I" (isort rules), not the old "I001"
+select = ["E", "F", "W", "I", "UP", "COM", "EXE", "ISC", "PIE"]
+# example ignores, add/remove as needed:
+# ignore = ["E203", "E266"]
+# Optional: turn on preview rules for more fixes
+preview = true
+[format]
+# optional
+quote-style = "preserve"

@@ -1,0 +1,152 @@
+--- tests\test_parser.py
++++ tests\test_parser.py
+@@ -1,7 +1,7 @@
+ """Unit tests for the specification parser in the attack tree analyzer."""
+ 
+ 
+-from app.model import parse_spec, SpecError
++from app.model import SpecError, parse_spec
+ 
+ 
+ def test_parse_yaml_simple():
+
+--- run.py
++++ run.py
+@@ -22,4 +22,4 @@
+     # because tests will handle any errors and reloader loops are
+     # undesirable when running via this script.  The host and port are
+     # explicitly set to make it clear where the app will listen.
+-    app.run(host="0.0.0.0", port=5000, debug=True) 
+\ No newline at end of file
++    app.run(host="0.0.0.0", port=5000, debug=True)
+
+--- tests\test_logic.py
++++ tests\test_logic.py
+@@ -2,7 +2,6 @@
+ 
+ import math
+ 
+-
+ from app.model import compute_probabilities, expected_loss, top_contributors
+ 
+ 
+@@ -51,4 +50,4 @@
+     # contributions: a=0.5, b=0.8, c=0.8. b and c tie; stable sort by order of appearance
+     assert len(top) == 2
+     # The values should be non‑increasing
+-    assert top[0]["value"] >= top[1]["value"]
+\ No newline at end of file
++    assert top[0]["value"] >= top[1]["value"]
+
+--- app\__init__.py
++++ app\__init__.py
+@@ -56,4 +56,4 @@
+     app.jinja_env.filters["pct"] = pct
+     app.jinja_env.filters["prob"] = prob
+ 
+-    return app
+\ No newline at end of file
++    return app
+
+--- app\routes.py
++++ app\routes.py
+@@ -13,8 +13,10 @@
+ import copy
+ import io
+ import os
+-from typing import Any, Dict, Optional, List
++from typing import Any, Dict, List, Optional
+ 
++# YAML is used for exporting specifications
++import yaml  # type: ignore
+ from flask import (
+     Blueprint,
+     current_app,
+@@ -28,18 +30,14 @@
+ )
+ 
+ from .model import (
+-    parse_spec,
++    SpecError,
+     compute_probabilities,
+     expected_loss,
++    parse_spec,
+     top_contributors,
+-    SpecError,
+ )
+ from .viz import render_tree
+-
+-# YAML is used for exporting specifications
+-import yaml  # type: ignore
+ 
+-
+ bp = Blueprint("main", __name__)
+ 
+ 
+@@ -336,4 +334,4 @@
+         as_attachment=True,
+         download_name=os.path.basename(abs_path),
+         mimetype="image/png",
+-    )
+\ No newline at end of file
++    )
+
+--- app\model.py
++++ app\model.py
+@@ -17,9 +17,10 @@
+ from __future__ import annotations
+ 
+ import json
+-from typing import Any, Dict, List, Tuple, Optional
++from typing import Any, Dict, List, Tuple
+ 
+ import yaml  # type: ignore
++
+ try:
+     import xmltodict  # type: ignore
+ except Exception:
+@@ -354,4 +355,4 @@
+     return [
+         {"id": nid, "label": lbl, "value": val}
+         for nid, lbl, val in top
+-    ]
+\ No newline at end of file
++    ]
+
+--- app\viz.py
++++ app\viz.py
+@@ -12,7 +12,7 @@
+ 
+ import os
+ import time
+-from typing import Dict, Any, Tuple
++from typing import Any, Dict, Tuple
+ 
+ import matplotlib
+ 
+@@ -20,6 +20,7 @@
+ matplotlib.use("Agg")  # noqa: E402  # must be set before pyplot import
+ 
+ import matplotlib.pyplot as plt
++
+ try:
+     import networkx as nx  # type: ignore
+ except Exception:
+@@ -30,7 +31,6 @@
+     """Render the attack tree to a PNG file and return its relative path."""
+     import math
+     import textwrap
+-    import matplotlib.pyplot as plt
+ 
+     # --- helpers -------------------------------------------------------------
+     def wrap_label(s: str, width: int = 16, max_lines: int = 3) -> str:
+@@ -207,7 +207,6 @@
+     )
+ 
+     # --- Save higher DPI, extra tight bbox -----------------------------------
+-    import os, time
+     timestamp = int(time.time() * 1000)
+     filename = f"tree_{timestamp}.png"
+     current_dir = os.path.dirname(os.path.abspath(__file__))
+
+Would fix 17 errors (1 additional fix available with `--unsafe-fixes`).

@@ -1,0 +1,80 @@
+id: top_pre
+label: Loss from disruption/compromise of sales & records (pre)
+type: OR
+children:
+- pos
+- sheet
+- wifi
+- fd_ransom
+- power_out
+- email_imperson
+nodes:
+- id: corrupt
+  label: Spreadsheet corruption (bad save/power cut)
+  type: LEAF
+  prob: 0.1
+  impact: 1500.0
+- id: delete
+  label: Accidental deletion/overwrite of spreadsheet
+  type: LEAF
+  prob: 0.2
+  impact: 5000.0
+- id: email_imperson
+  label: Email order impersonation → fraudulent pickup/chargeback
+  type: LEAF
+  prob: 0.7
+  impact: 56000.0
+- id: fd_ransom
+  label: Front-desk PC ransomware encrypts sales records
+  type: LEAF
+  prob: 0.5
+  impact: 90000.0
+- id: flat_net
+  label: Flat network (no segmentation; staff phones on same LAN)
+  type: LEAF
+  prob: 0.25
+  impact: 25000.0
+- id: hdd_fail
+  label: Old warehouse PC HDD fails; no recent backup
+  type: LEAF
+  prob: 0.01
+  impact: 180.0
+- id: no_backup
+  label: No/weak backups of sales records
+  type: LEAF
+  prob: 0.2
+  impact: 5000.0
+- id: pos
+  label: Point-of-sale disruption
+  type: AND
+  children:
+  - pos_fail
+  - no_backup
+- id: pos_fail
+  label: Front-desk POS software/hardware failure
+  type: LEAF
+  prob: 0.5
+  impact: 12500.0
+- id: power_out
+  label: Power outage + no UPS causes abrupt shutdown/data loss
+  type: LEAF
+  prob: 0.3
+  impact: 2400.0
+- id: sheet
+  label: Warehouse spreadsheet unavailable/corrupted
+  type: OR
+  children:
+  - corrupt
+  - delete
+  - hdd_fail
+- id: weak_cfg
+  label: Weak Wi-Fi config (default creds/WPA2-PSK reuse)
+  type: LEAF
+  prob: 0.6
+  impact: 36000.0
+- id: wifi
+  label: Insecure shop Wi-Fi/network enables compromise
+  type: AND
+  children:
+  - flat_net
+  - weak_cfg

@@ -1,0 +1,40 @@
+:root {
+  --radius: 16px;
+}
+
+.card {
+  border-radius: var(--radius);
+}
+
+img {
+  border-radius: 12px;
+}
+
+.text-monospace {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.math-popover {
+  max-width: 420px;
+}
+
+.math-popover .popover-body {
+  max-height: 50vh;
+  overflow: auto;
+}
+
+/* Gentle scale on open */
+.modal.fade .modal-dialog {
+  transform: scale(0.98);
+  transition: transform .2s ease-out;
+}
+
+.modal.show .modal-dialog {
+  transform: scale(1);
+}
+
+/* Keep image within viewport */
+.lightbox-img {
+  max-height: 85vh;
+  object-fit: contain;
+}

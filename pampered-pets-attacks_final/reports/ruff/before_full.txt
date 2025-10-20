@@ -1,0 +1,353 @@
+W292 [*] No newline at end of file
+  --> app\__init__.py:59:15
+   |
+57 |     app.jinja_env.filters["prob"] = prob
+58 |
+59 |     return app
+   |               ^
+   |
+help: Add trailing newline
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> app\model.py:17:1
+   |
+15 |   """
+16 |
+17 | / from __future__ import annotations
+18 | |
+19 | | import json
+20 | | from typing import Any, Dict, List, Tuple, Optional
+21 | |
+22 | | import yaml  # type: ignore
+   | |___________^
+23 |   try:
+24 |       import xmltodict  # type: ignore
+   |
+help: Organize imports
+
+F401 [*] `typing.Optional` imported but unused
+  --> app\model.py:20:44
+   |
+19 | import json
+20 | from typing import Any, Dict, List, Tuple, Optional
+   |                                            ^^^^^^^^
+21 |
+22 | import yaml  # type: ignore
+   |
+help: Remove unused import: `typing.Optional`
+
+W292 [*] No newline at end of file
+   --> app\model.py:357:6
+    |
+355 |         {"id": nid, "label": lbl, "value": val}
+356 |         for nid, lbl, val in top
+357 |     ]
+    |      ^
+    |
+help: Add trailing newline
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> app\routes.py:11:1
+   |
+ 9 |   """
+10 |
+11 | / from __future__ import annotations
+12 | |
+13 | | import copy
+14 | | import io
+15 | | import os
+16 | | from typing import Any, Dict, Optional, List
+17 | |
+18 | | from flask import (
+19 | |     Blueprint,
+20 | |     current_app,
+21 | |     flash,
+22 | |     redirect,
+23 | |     render_template,
+24 | |     request,
+25 | |     send_file,
+26 | |     session,
+27 | |     url_for,
+28 | | )
+29 | |
+30 | | from .model import (
+31 | |     parse_spec,
+32 | |     compute_probabilities,
+33 | |     expected_loss,
+34 | |     top_contributors,
+35 | |     SpecError,
+36 | | )
+37 | | from .viz import render_tree
+38 | |
+39 | | # YAML is used for exporting specifications
+40 | | import yaml  # type: ignore
+   | |___________^
+   |
+help: Organize imports
+
+W292 [*] No newline at end of file
+   --> app\routes.py:339:6
+    |
+337 |         download_name=os.path.basename(abs_path),
+338 |         mimetype="image/png",
+339 |     )
+    |      ^
+    |
+help: Add trailing newline
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> app\viz.py:11:1
+   |
+ 9 |   """
+10 |
+11 | / from __future__ import annotations
+12 | |
+13 | | import os
+14 | | import time
+15 | | from typing import Dict, Any, Tuple
+16 | |
+17 | | import matplotlib
+   | |_________________^
+18 |
+19 |   # Use a non‑interactive backend suitable for headless environments
+   |
+help: Organize imports
+
+F401 [*] `os` imported but unused
+  --> app\viz.py:13:8
+   |
+11 | from __future__ import annotations
+12 |
+13 | import os
+   |        ^^
+14 | import time
+15 | from typing import Dict, Any, Tuple
+   |
+help: Remove unused import: `os`
+
+F401 [*] `time` imported but unused
+  --> app\viz.py:14:8
+   |
+13 | import os
+14 | import time
+   |        ^^^^
+15 | from typing import Dict, Any, Tuple
+   |
+help: Remove unused import: `time`
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> app\viz.py:22:1
+   |
+20 | matplotlib.use("Agg")  # noqa: E402  # must be set before pyplot import
+21 |
+22 | import matplotlib.pyplot as plt
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+23 | try:
+24 |     import networkx as nx  # type: ignore
+   |
+help: Organize imports
+
+F401 [*] `matplotlib.pyplot` imported but unused
+  --> app\viz.py:22:29
+   |
+20 | matplotlib.use("Agg")  # noqa: E402  # must be set before pyplot import
+21 |
+22 | import matplotlib.pyplot as plt
+   |                             ^^^
+23 | try:
+24 |     import networkx as nx  # type: ignore
+   |
+help: Remove unused import: `matplotlib.pyplot`
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> app\viz.py:31:5
+   |
+29 |   def render_tree(root_id: str, nodes: Dict[str, Dict[str, Any]]) -> str:
+30 |       """Render the attack tree to a PNG file and return its relative path."""
+31 | /     import math
+32 | |     import textwrap
+33 | |     import matplotlib.pyplot as plt
+   | |___________________________________^
+34 |
+35 |       # --- helpers -------------------------------------------------------------
+   |
+help: Organize imports
+
+F811 [*] Redefinition of unused `plt` from line 22
+  --> app\viz.py:33:33
+   |
+31 |     import math
+32 |     import textwrap
+33 |     import matplotlib.pyplot as plt
+   |                                 ^^^ `plt` redefined here
+34 |
+35 |     # --- helpers -------------------------------------------------------------
+   |
+  ::: app\viz.py:22:29
+   |
+20 | matplotlib.use("Agg")  # noqa: E402  # must be set before pyplot import
+21 |
+22 | import matplotlib.pyplot as plt
+   |                             --- previous definition of `plt` here
+23 | try:
+24 |     import networkx as nx  # type: ignore
+   |
+help: Remove definition: `plt`
+
+F841 Local variable `depths` is assigned to but never used
+   --> app\viz.py:144:9
+    |
+143 |         # Labels: wrap + offset + bbox for readability
+144 |         depths = node_depths(root_id)
+    |         ^^^^^^
+145 |         # Font scales slightly with figure size; clamp to reasonable range
+146 |         base_font = max(7, min(12, int(8 + 0.2 * math.sqrt(N))))
+    |
+help: Remove assignment to unused variable `depths`
+
+E401 [*] Multiple imports on one line
+   --> app\viz.py:210:5
+    |
+209 |     # --- Save higher DPI, extra tight bbox -----------------------------------
+210 |     import os, time
+    |     ^^^^^^^^^^^^^^^
+211 |     timestamp = int(time.time() * 1000)
+212 |     filename = f"tree_{timestamp}.png"
+    |
+help: Split imports
+
+I001 [*] Import block is un-sorted or un-formatted
+   --> app\viz.py:210:5
+    |
+209 |     # --- Save higher DPI, extra tight bbox -----------------------------------
+210 |     import os, time
+    |     ^^^^^^^^^^^^^^^
+211 |     timestamp = int(time.time() * 1000)
+212 |     filename = f"tree_{timestamp}.png"
+    |
+help: Organize imports
+
+F811 [*] Redefinition of unused `os` from line 13
+   --> app\viz.py:210:12
+    |
+209 |     # --- Save higher DPI, extra tight bbox -----------------------------------
+210 |     import os, time
+    |            ^^ `os` redefined here
+211 |     timestamp = int(time.time() * 1000)
+212 |     filename = f"tree_{timestamp}.png"
+    |
+   ::: app\viz.py:13:8
+    |
+ 11 | from __future__ import annotations
+ 12 |
+ 13 | import os
+    |        -- previous definition of `os` here
+ 14 | import time
+ 15 | from typing import Dict, Any, Tuple
+    |
+help: Remove definition: `os`
+
+F811 [*] Redefinition of unused `time` from line 14
+   --> app\viz.py:210:16
+    |
+209 |     # --- Save higher DPI, extra tight bbox -----------------------------------
+210 |     import os, time
+    |                ^^^^ `time` redefined here
+211 |     timestamp = int(time.time() * 1000)
+212 |     filename = f"tree_{timestamp}.png"
+    |
+   ::: app\viz.py:14:8
+    |
+ 13 | import os
+ 14 | import time
+    |        ---- previous definition of `time` here
+ 15 | from typing import Dict, Any, Tuple
+    |
+help: Remove definition: `time`
+
+W291 [*] Trailing whitespace
+  --> run.py:25:51
+   |
+23 |     # undesirable when running via this script.  The host and port are
+24 |     # explicitly set to make it clear where the app will listen.
+25 |     app.run(host="0.0.0.0", port=5000, debug=True) 
+   |                                                   ^
+   |
+help: Remove trailing whitespace
+
+W292 [*] No newline at end of file
+  --> run.py:25:52
+   |
+23 |     # undesirable when running via this script.  The host and port are
+24 |     # explicitly set to make it clear where the app will listen.
+25 |     app.run(host="0.0.0.0", port=5000, debug=True) 
+   |                                                    ^
+   |
+help: Add trailing newline
+
+I001 [*] Import block is un-sorted or un-formatted
+ --> tests\test_logic.py:3:1
+  |
+1 |   """Unit tests for the aggregation logic in the attack tree analyzer."""
+2 |
+3 | / import math
+4 | |
+5 | |
+6 | | from app.model import compute_probabilities, expected_loss, top_contributors
+  | |____________________________________________________________________________^
+  |
+help: Organize imports
+
+E501 Line too long (109 > 100)
+  --> tests\test_logic.py:12:101
+   |
+10 |     """Probability of an AND node is the product of its children's probabilities."""
+11 |     nodes = {
+12 |         "n1": {"id": "n1", "type": "AND", "children": ["a", "b"], "label": "", "prob": None, "impact": None},
+   |                                                                                                     ^^^^^^^^^
+13 |         "a": {"id": "a", "type": "LEAF", "children": [], "label": "", "prob": 0.5, "impact": 10},
+14 |         "b": {"id": "b", "type": "LEAF", "children": [], "label": "", "prob": 0.2, "impact": 5},
+   |
+
+E501 Line too long (110 > 100)
+  --> tests\test_logic.py:23:101
+   |
+21 |     """Probability of an OR node is one minus the product of child failure probabilities."""
+22 |     nodes = {
+23 |         "top": {"id": "top", "type": "OR", "children": ["a", "b"], "label": "", "prob": None, "impact": None},
+   |                                                                                                     ^^^^^^^^^^
+24 |         "a": {"id": "a", "type": "LEAF", "children": [], "label": "", "prob": 0.3, "impact": 7},
+25 |         "b": {"id": "b", "type": "LEAF", "children": [], "label": "", "prob": 0.6, "impact": 2},
+   |
+
+E501 Line too long (109 > 100)
+  --> tests\test_logic.py:35:101
+   |
+33 |     """Expected loss sums probability*impact over all leaves."""
+34 |     nodes = {
+35 |         "n1": {"id": "n1", "type": "AND", "children": ["a", "b"], "label": "", "prob": None, "impact": None},
+   |                                                                                                     ^^^^^^^^^
+36 |         "a": {"id": "a", "type": "LEAF", "children": [], "label": "", "prob": 0.5, "impact": 10},
+37 |         "b": {"id": "b", "type": "LEAF", "children": [], "label": "", "prob": 0.2, "impact": 5},
+   |
+
+W292 [*] No newline at end of file
+  --> tests\test_logic.py:54:46
+   |
+52 |     assert len(top) == 2
+53 |     # The values should be non‑increasing
+54 |     assert top[0]["value"] >= top[1]["value"]
+   |                                              ^
+   |
+help: Add trailing newline
+
+I001 [*] Import block is un-sorted or un-formatted
+ --> tests\test_parser.py:4:1
+  |
+4 | from app.model import parse_spec, SpecError
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+help: Organize imports
+
+Found 26 errors.
+[*] 22 fixable with the `--fix` option (1 hidden fix can be enabled with the `--unsafe-fixes` option).

@@ -1,0 +1,90 @@
+id: top_pre
+label: "Loss from disruption/compromise of sales & records (pre)"
+type: OR
+children:
+  - pos
+  - sheet
+  - wifi
+  - fd_ransom
+  - power_out
+  - email_imperson
+
+nodes:
+  # --- POS subtree ---
+  - id: pos
+    label: "Point-of-sale disruption"
+    type: AND
+    children: [pos_fail, no_backup]
+
+  - id: pos_fail
+    label: "Front-desk POS software/hardware failure"
+    type: LEAF
+    prob: null
+    impact: null
+
+  - id: no_backup
+    label: "No/weak backups of sales records"
+    type: LEAF
+    prob: null
+    impact: null
+
+  # --- Warehouse spreadsheet subtree ---
+  - id: sheet
+    label: "Warehouse spreadsheet unavailable/corrupted"
+    type: OR
+    children: [corrupt, delete, hdd_fail]
+
+  - id: corrupt
+    label: "Spreadsheet corruption (bad save/power cut)"
+    type: LEAF
+    prob: null
+    impact: null
+
+  - id: delete
+    label: "Accidental deletion/overwrite of spreadsheet"
+    type: LEAF
+    prob: null
+    impact: null
+
+  - id: hdd_fail
+    label: "Old warehouse PC HDD fails; no recent backup"
+    type: LEAF
+    prob: null
+    impact: null
+
+  # --- Wi-Fi / network subtree ---
+  - id: wifi
+    label: "Insecure shop Wi-Fi/network enables compromise"
+    type: AND
+    children: [flat_net, weak_cfg]
+
+  - id: flat_net
+    label: "Flat network (no segmentation; staff phones on same LAN)"
+    type: LEAF
+    prob: null
+    impact: null
+
+  - id: weak_cfg
+    label: "Weak Wi-Fi config (default creds/WPA2-PSK reuse)"
+    type: LEAF
+    prob: null
+    impact: null
+
+  # --- Additional realistic pre-digital leaves (root children) ---
+  - id: fd_ransom
+    label: "Front-desk PC ransomware encrypts sales records"
+    type: LEAF
+    prob: null
+    impact: null
+
+  - id: power_out
+    label: "Power outage + no UPS causes abrupt shutdown/data loss"
+    type: LEAF
+    prob: null
+    impact: null
+
+  - id: email_imperson
+    label: "Email order impersonation → fraudulent pickup/chargeback"
+    type: LEAF
+    prob: null
+    impact: null

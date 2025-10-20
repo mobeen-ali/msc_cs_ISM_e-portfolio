@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="mb-3">Attack Tree Analyzer</h1>
+<p class="text-muted">Upload a YAML, JSON or XML attack tree specification or load one of the demo scenarios to begin
+  analysis.</p>
+
+<div class="row g-4">
+  <div class="col-12 col-lg-7">
+    <div class="card shadow-sm">
+      <div class="card-header bg-white">
+        <h5 class="mb-0">Upload & Analyze</h5>
+      </div>
+      <div class="card-body">
+        <form method="post" action="{{ url_for('main.analyze_post') }}" enctype="multipart/form-data" class="row gy-3">
+          <div class="col-12">
+            <label for="spec_file" class="form-label">Select specification file</label>
+            <input class="form-control" type="file" id="spec_file" name="spec_file" accept=".yaml,.yml,.json,.xml"
+              required>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">Upload and Analyze</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-5">
+    <div class="card shadow-sm">
+      <div class="card-header bg-white">
+        <h5 class="mb-0">Demo scenarios</h5>
+      </div>
+      <div class="card-body">
+        <p class="text-muted">
+          The following buttons load preconfigured attack trees representing a pre-digital or post-digital environment.
+          The demos load with baseline leaf probabilities and impacts (you can edit them).
+        </p>
+        <div class="d-grid gap-2">
+          <a href="{{ url_for('main.load_demo', scenario='pre') }}" class="btn btn-outline-primary">Load Pre-Digital
+            Demo</a>
+          <a href="{{ url_for('main.load_demo', scenario='post') }}" class="btn btn-outline-primary">Load Post-Digital
+            Demo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,812 @@
+[
+  {
+    "cell": null,
+    "code": "W292",
+    "end_location": {
+      "column": 15,
+      "row": 59
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\app\\__init__.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "\n",
+          "end_location": {
+            "column": 15,
+            "row": 59
+          },
+          "location": {
+            "column": 15,
+            "row": 59
+          }
+        }
+      ],
+      "message": "Add trailing newline"
+    },
+    "location": {
+      "column": 15,
+      "row": 59
+    },
+    "message": "No newline at end of file",
+    "noqa_row": 59,
+    "url": "https://docs.astral.sh/ruff/rules/missing-newline-at-end-of-file"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 12,
+      "row": 22
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\app\\model.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport json\nfrom typing import Any, Dict, List, Optional, Tuple\n\nimport yaml  # type: ignore\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 23
+          },
+          "location": {
+            "column": 1,
+            "row": 17
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 17
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "noqa_row": 17,
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 52,
+      "row": 20
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\app\\model.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from typing import Any, Dict, List, Tuple",
+          "end_location": {
+            "column": 52,
+            "row": 20
+          },
+          "location": {
+            "column": 1,
+            "row": 20
+          }
+        }
+      ],
+      "message": "Remove unused import: `typing.Optional`"
+    },
+    "location": {
+      "column": 44,
+      "row": 20
+    },
+    "message": "`typing.Optional` imported but unused",
+    "noqa_row": 20,
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "W292",
+    "end_location": {
+      "column": 6,
+      "row": 357
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\app\\model.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "\n",
+          "end_location": {
+            "column": 6,
+            "row": 357
+          },
+          "location": {
+            "column": 6,
+            "row": 357
+          }
+        }
+      ],
+      "message": "Add trailing newline"
+    },
+    "location": {
+      "column": 6,
+      "row": 357
+    },
+    "message": "No newline at end of file",
+    "noqa_row": 357,
+    "url": "https://docs.astral.sh/ruff/rules/missing-newline-at-end-of-file"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 12,
+      "row": 40
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\app\\routes.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport copy\nimport io\nimport os\nfrom typing import Any, Dict, List, Optional\n\n# YAML is used for exporting specifications\nimport yaml  # type: ignore\nfrom flask import (\n    Blueprint,\n    current_app,\n    flash,\n    redirect,\n    render_template,\n    request,\n    send_file,\n    session,\n    url_for,\n)\n\nfrom .model import (\n    SpecError,\n    compute_probabilities,\n    expected_loss,\n    parse_spec,\n    top_contributors,\n)\nfrom .viz import render_tree\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 43
+          },
+          "location": {
+            "column": 1,
+            "row": 11
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 11
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "noqa_row": 11,
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "W292",
+    "end_location": {
+      "column": 6,
+      "row": 339
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\app\\routes.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "\n",
+          "end_location": {
+            "column": 6,
+            "row": 339
+          },
+          "location": {
+            "column": 6,
+            "row": 339
+          }
+        }
+      ],
+      "message": "Add trailing newline"
+    },
+    "location": {
+      "column": 6,
+      "row": 339
+    },
+    "message": "No newline at end of file",
+    "noqa_row": 339,
+    "url": "https://docs.astral.sh/ruff/rules/missing-newline-at-end-of-file"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 18,
+      "row": 17
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\app\\viz.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport os\nimport time\nfrom typing import Any, Dict, Tuple\n\nimport matplotlib\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 19
+          },
+          "location": {
+            "column": 1,
+            "row": 11
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 11
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "noqa_row": 11,
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 10,
+      "row": 13
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\app\\viz.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 14
+          },
+          "location": {
+            "column": 1,
+            "row": 13
+          }
+        }
+      ],
+      "message": "Remove unused import: `os`"
+    },
+    "location": {
+      "column": 8,
+      "row": 13
+    },
+    "message": "`os` imported but unused",
+    "noqa_row": 13,
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 12,
+      "row": 14
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\app\\viz.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 15
+          },
+          "location": {
+            "column": 1,
+            "row": 14
+          }
+        }
+      ],
+      "message": "Remove unused import: `time`"
+    },
+    "location": {
+      "column": 8,
+      "row": 14
+    },
+    "message": "`time` imported but unused",
+    "noqa_row": 14,
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 32,
+      "row": 22
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\app\\viz.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import matplotlib.pyplot as plt\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 23
+          },
+          "location": {
+            "column": 1,
+            "row": 22
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 22
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "noqa_row": 22,
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 32,
+      "row": 22
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\app\\viz.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 23
+          },
+          "location": {
+            "column": 1,
+            "row": 22
+          }
+        }
+      ],
+      "message": "Remove unused import: `matplotlib.pyplot`"
+    },
+    "location": {
+      "column": 29,
+      "row": 22
+    },
+    "message": "`matplotlib.pyplot` imported but unused",
+    "noqa_row": 22,
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 36,
+      "row": 33
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\app\\viz.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "    import math\n    import textwrap\n\n    import matplotlib.pyplot as plt\n",
+          "end_location": {
+            "column": 1,
+            "row": 34
+          },
+          "location": {
+            "column": 1,
+            "row": 31
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 5,
+      "row": 31
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "noqa_row": 31,
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "F811",
+    "end_location": {
+      "column": 36,
+      "row": 33
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\app\\viz.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 34
+          },
+          "location": {
+            "column": 1,
+            "row": 33
+          }
+        }
+      ],
+      "message": "Remove definition: `plt`"
+    },
+    "location": {
+      "column": 33,
+      "row": 33
+    },
+    "message": "Redefinition of unused `plt` from line 22",
+    "noqa_row": 33,
+    "url": "https://docs.astral.sh/ruff/rules/redefined-while-unused"
+  },
+  {
+    "cell": null,
+    "code": "F841",
+    "end_location": {
+      "column": 15,
+      "row": 144
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\app\\viz.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 18,
+            "row": 144
+          },
+          "location": {
+            "column": 9,
+            "row": 144
+          }
+        }
+      ],
+      "message": "Remove assignment to unused variable `depths`"
+    },
+    "location": {
+      "column": 9,
+      "row": 144
+    },
+    "message": "Local variable `depths` is assigned to but never used",
+    "noqa_row": 144,
+    "url": "https://docs.astral.sh/ruff/rules/unused-variable"
+  },
+  {
+    "cell": null,
+    "code": "E401",
+    "end_location": {
+      "column": 20,
+      "row": 210
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\app\\viz.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "    import os\n    import time",
+          "end_location": {
+            "column": 20,
+            "row": 210
+          },
+          "location": {
+            "column": 1,
+            "row": 210
+          }
+        }
+      ],
+      "message": "Split imports"
+    },
+    "location": {
+      "column": 5,
+      "row": 210
+    },
+    "message": "Multiple imports on one line",
+    "noqa_row": 210,
+    "url": "https://docs.astral.sh/ruff/rules/multiple-imports-on-one-line"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 20,
+      "row": 210
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\app\\viz.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "    import os\n    import time\n",
+          "end_location": {
+            "column": 1,
+            "row": 211
+          },
+          "location": {
+            "column": 1,
+            "row": 210
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 5,
+      "row": 210
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "noqa_row": 210,
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "F811",
+    "end_location": {
+      "column": 14,
+      "row": 210
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\app\\viz.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 211
+          },
+          "location": {
+            "column": 1,
+            "row": 210
+          }
+        }
+      ],
+      "message": "Remove definition: `os`"
+    },
+    "location": {
+      "column": 12,
+      "row": 210
+    },
+    "message": "Redefinition of unused `os` from line 13",
+    "noqa_row": 210,
+    "url": "https://docs.astral.sh/ruff/rules/redefined-while-unused"
+  },
+  {
+    "cell": null,
+    "code": "F811",
+    "end_location": {
+      "column": 20,
+      "row": 210
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\app\\viz.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 211
+          },
+          "location": {
+            "column": 1,
+            "row": 210
+          }
+        }
+      ],
+      "message": "Remove definition: `time`"
+    },
+    "location": {
+      "column": 16,
+      "row": 210
+    },
+    "message": "Redefinition of unused `time` from line 14",
+    "noqa_row": 210,
+    "url": "https://docs.astral.sh/ruff/rules/redefined-while-unused"
+  },
+  {
+    "cell": null,
+    "code": "W291",
+    "end_location": {
+      "column": 52,
+      "row": 25
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\run.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 52,
+            "row": 25
+          },
+          "location": {
+            "column": 51,
+            "row": 25
+          }
+        }
+      ],
+      "message": "Remove trailing whitespace"
+    },
+    "location": {
+      "column": 51,
+      "row": 25
+    },
+    "message": "Trailing whitespace",
+    "noqa_row": 25,
+    "url": "https://docs.astral.sh/ruff/rules/trailing-whitespace"
+  },
+  {
+    "cell": null,
+    "code": "W292",
+    "end_location": {
+      "column": 52,
+      "row": 25
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\run.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "\n",
+          "end_location": {
+            "column": 52,
+            "row": 25
+          },
+          "location": {
+            "column": 52,
+            "row": 25
+          }
+        }
+      ],
+      "message": "Add trailing newline"
+    },
+    "location": {
+      "column": 52,
+      "row": 25
+    },
+    "message": "No newline at end of file",
+    "noqa_row": 25,
+    "url": "https://docs.astral.sh/ruff/rules/missing-newline-at-end-of-file"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 77,
+      "row": 6
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\tests\\test_logic.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import math\n\nfrom app.model import compute_probabilities, expected_loss, top_contributors\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 9
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "noqa_row": 3,
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 110,
+      "row": 12
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\tests\\test_logic.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 12
+    },
+    "message": "Line too long (109 > 100)",
+    "noqa_row": 12,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 111,
+      "row": 23
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\tests\\test_logic.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 23
+    },
+    "message": "Line too long (110 > 100)",
+    "noqa_row": 23,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 110,
+      "row": 35
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\tests\\test_logic.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 35
+    },
+    "message": "Line too long (109 > 100)",
+    "noqa_row": 35,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "W292",
+    "end_location": {
+      "column": 46,
+      "row": 54
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\tests\\test_logic.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "\n",
+          "end_location": {
+            "column": 46,
+            "row": 54
+          },
+          "location": {
+            "column": 46,
+            "row": 54
+          }
+        }
+      ],
+      "message": "Add trailing newline"
+    },
+    "location": {
+      "column": 46,
+      "row": 54
+    },
+    "message": "No newline at end of file",
+    "noqa_row": 54,
+    "url": "https://docs.astral.sh/ruff/rules/missing-newline-at-end-of-file"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 44,
+      "row": 4
+    },
+    "filename": "D:\\MSc Computer Science\\Module_5_ISM\\msc_cs_ISM_e-portfolio\\Unit_6\\pampered-pets-attacks_final\\tests\\test_parser.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from app.model import SpecError, parse_spec\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 7
+          },
+          "location": {
+            "column": 1,
+            "row": 4
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 4
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "noqa_row": 4,
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  }
+]

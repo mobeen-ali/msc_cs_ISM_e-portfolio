@@ -36,9 +36,10 @@ By completing this unit, I was able to:
 
 | File | Description |
 |------|--------------|
-| [`Executive_Summary_and_Application.md`](Executive_Summary_and_Application.md) | Formal report summarising results from the Python attack-tree application used to model pre- and post-digitalisation scenarios for *Pampered Pets*. Includes probability/impact calibration, Annualised Loss Expectancy (ALE) calculations, and visual comparisons :contentReference[oaicite:3]{index=3}. |
-| [`AI_&_Automated_Cyber_Defence_-_Seminar_Unit_6.pptx`](AI_&_Automated_Cyber_Defence_-_Seminar_Unit_6.pptx) | Presentation titled *“AI & Automated Cyber Defence – The Next Frontier in Information Security”*. It argues that AI-driven automation will be the dominant SRM trend, analysing adaptation, adversarial risk, and ethical balance :contentReference[oaicite:4]{index=4}. |
-| [`Individual_Reflection.md`](Individual_Reflection.md) | Critical reflection applying Rolfe et al. (2001) to evaluate learning across the entire module, focusing on skill development, theoretical integration, and ethical awareness :contentReference[oaicite:5]{index=5}. |
+| [`Executive_Summary_and_Application.docx`](Executive_Summary_and_Application_v2.docx) | Formal report summarising results from the Python attack-tree application used to model pre- and post-digitalisation scenarios for *Pampered Pets*. Includes probability/impact calibration, Annualised Loss Expectancy (ALE) calculations, and visual comparisons :contentReference[oaicite:3]{index=3}. |
+| [`Attack Tree Application`](./pampered-pets-attacks_final/README.md) | README for the developed Attack Tree Analyzer app [oaicite:4]{index=4}. |
+| [`AI_&_Automated_Cyber_Defence_-_Seminar_Unit_6.pptx`](AI_&_Automated_Cyber_Defence_-_Seminar_Unit_6.pptx) | Presentation titled *“AI & Automated Cyber Defence – The Next Frontier in Information Security”*. It argues that AI-driven automation will be the dominant SRM trend, analysing adaptation, adversarial risk, and ethical balance :contentReference[oaicite:5]{index=5}. |
+| [`Individual_Reflection.docx`](Individual_Reflection.docx) | Critical reflection applying Rolfe et al. (2001) to evaluate learning across the entire module, focusing on skill development, theoretical integration, and ethical awareness :contentReference[oaicite:6]{index=6}. |
 
 ---
 

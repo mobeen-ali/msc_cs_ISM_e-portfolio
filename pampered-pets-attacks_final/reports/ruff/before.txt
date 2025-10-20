@@ -1,0 +1,10 @@
+8	I001	[*] unsorted-imports
+5	W292	[*] missing-newline-at-end-of-file
+4	F401	[*] unused-import
+3	E501	[ ] line-too-long
+3	F811	[*] redefined-while-unused
+1	E401	[*] multiple-imports-on-one-line
+1	F841	[ ] unused-variable
+1	W291	[*] trailing-whitespace
+Found 26 errors.
+[*] 22 fixable with the `--fix` option (1 hidden fix can be enabled with the `--unsafe-fixes` option).
