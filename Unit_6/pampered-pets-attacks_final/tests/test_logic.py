@@ -2,14 +2,20 @@
 
 import math
 
-
 from app.model import compute_probabilities, expected_loss, top_contributors
 
 
 def test_and_probability():
     """Probability of an AND node is the product of its children's probabilities."""
     nodes = {
-        "n1": {"id": "n1", "type": "AND", "children": ["a", "b"], "label": "", "prob": None, "impact": None},
+        "n1": {
+            "id": "n1",
+            "type": "AND",
+            "children": ["a", "b"],
+            "label": "",
+            "prob": None,
+            "impact": None,
+        },
         "a": {"id": "a", "type": "LEAF", "children": [], "label": "", "prob": 0.5, "impact": 10},
         "b": {"id": "b", "type": "LEAF", "children": [], "label": "", "prob": 0.2, "impact": 5},
     }
@@ -20,7 +26,14 @@ def test_and_probability():
 def test_or_probability():
     """Probability of an OR node is one minus the product of child failure probabilities."""
     nodes = {
-        "top": {"id": "top", "type": "OR", "children": ["a", "b"], "label": "", "prob": None, "impact": None},
+        "top": {
+            "id": "top",
+            "type": "OR",
+            "children": ["a", "b"],
+            "label": "",
+            "prob": None,
+            "impact": None,
+        },
         "a": {"id": "a", "type": "LEAF", "children": [], "label": "", "prob": 0.3, "impact": 7},
         "b": {"id": "b", "type": "LEAF", "children": [], "label": "", "prob": 0.6, "impact": 2},
     }
@@ -32,7 +45,14 @@ def test_or_probability():
 def test_expected_loss():
     """Expected loss sums probability*impact over all leaves."""
     nodes = {
-        "n1": {"id": "n1", "type": "AND", "children": ["a", "b"], "label": "", "prob": None, "impact": None},
+        "n1": {
+            "id": "n1",
+            "type": "AND",
+            "children": ["a", "b"],
+            "label": "",
+            "prob": None,
+            "impact": None,
+        },
         "a": {"id": "a", "type": "LEAF", "children": [], "label": "", "prob": 0.5, "impact": 10},
         "b": {"id": "b", "type": "LEAF", "children": [], "label": "", "prob": 0.2, "impact": 5},
     }

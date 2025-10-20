@@ -1,7 +1,6 @@
 """Unit tests for the specification parser in the attack tree analyzer."""
 
-
-from app.model import parse_spec, SpecError
+from app.model import SpecError, parse_spec
 
 
 def test_parse_yaml_simple():
@@ -37,6 +36,7 @@ def test_parse_json():
         ],
     }
     import json
+
     spec = parse_spec(json.dumps(json_text), "json")
     assert spec["nodes"]["a"]["impact"] == 5
 

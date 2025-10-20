@@ -7,6 +7,7 @@ instances if needed.  Routes are registered via a blueprint in
 ``routes.py``.
 """
 
+
 def create_app():
     """Create and configure a new Flask application.
 
@@ -20,6 +21,7 @@ def create_app():
     # testing the model).  Without this lazy import the module import
     # would fail if Flask is unavailable in the environment.
     from flask import Flask
+
     app = Flask(__name__, static_folder="static", template_folder="templates")
 
     # A secret key is required for session management and flash messages.
@@ -31,6 +33,7 @@ def create_app():
     # Register blueprints.  The routes blueprint encapsulates all HTTP
     # endpoints for the application.
     from . import routes  # import inside function to avoid circular deps
+
     app.register_blueprint(routes.bp)
 
     def currency(v):
@@ -42,7 +45,7 @@ def create_app():
     def pct(v, decimals=1):
         # v is a probability in [0,1]
         try:
-            return f"{float(v)*100:.{int(decimals)}f}%"
+            return f"{float(v) * 100:.{int(decimals)}f}%"
         except Exception:
             return v
 

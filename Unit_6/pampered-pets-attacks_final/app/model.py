@@ -17,9 +17,10 @@ context, making them easy to unit test.
 from __future__ import annotations
 
 import json
-from typing import Any, Dict, List, Tuple, Optional
+from typing import Any
 
 import yaml  # type: ignore
+
 try:
     import xmltodict  # type: ignore
 except Exception:
@@ -29,10 +30,8 @@ except Exception:
 class SpecError(Exception):
     """Exception raised for errors in the attack tree specification."""
 
-    pass
 
-
-def _normalise_node(node: Dict[str, Any]) -> Dict[str, Any]:
+def _normalise_node(node: dict[str, Any]) -> dict[str, Any]:
     """Ensure a node dictionary has all required keys with default values.
 
     Parameters
@@ -50,7 +49,7 @@ def _normalise_node(node: Dict[str, Any]) -> Dict[str, Any]:
         absent.
     """
     # Copy to avoid mutating the caller's object
-    n: Dict[str, Any] = {
+    n: dict[str, Any] = {
         "id": node.get("id"),
         "label": node.get("label"),
         "type": node.get("type"),
@@ -75,7 +74,7 @@ def _normalise_node(node: Dict[str, Any]) -> Dict[str, Any]:
     return n
 
 
-def _build_internal_spec(spec: Dict[str, Any]) -> Dict[str, Any]:
+def _build_internal_spec(spec: dict[str, Any]) -> dict[str, Any]:
     """Convert a raw spec dictionary into the internal representation.
 
     The top level of an attack tree specification contains the root
@@ -108,7 +107,7 @@ def _build_internal_spec(spec: Dict[str, Any]) -> Dict[str, Any]:
     if root_id is None:
         raise SpecError("Missing 'id' for root node")
     # Start building nodes mapping with an entry for the root
-    nodes_map: Dict[str, Dict[str, Any]] = {}
+    nodes_map: dict[str, dict[str, Any]] = {}
     # Add root from top level
     root_node = {
         "id": root_id,
@@ -152,7 +151,7 @@ def _build_internal_spec(spec: Dict[str, Any]) -> Dict[str, Any]:
     return {"root": root_id, "nodes": nodes_map}
 
 
-def parse_spec(data: bytes | str, extension: str) -> Dict[str, Any]:
+def parse_spec(data: bytes | str, extension: str) -> dict[str, Any]:
     """Parse an attack tree specification from YAML, JSON or XML.
 
     Parameters
@@ -194,6 +193,7 @@ def parse_spec(data: bytes | str, extension: str) -> Dict[str, Any]:
                 spec_obj = next(iter(xml_dict.values()))
             else:
                 import xml.etree.ElementTree as ET
+
                 root_el = ET.fromstring(text)
                 spec_obj = {}
                 # Extract simple scalar fields
@@ -210,7 +210,7 @@ def parse_spec(data: bytes | str, extension: str) -> Dict[str, Any]:
                 nodes_list = []
                 if nodes_el is not None:
                     for node_el in nodes_el.findall("node"):
-                        node_dict: Dict[str, Any] = {}
+                        node_dict: dict[str, Any] = {}
                         for tag in ("id", "label", "type"):
                             el2 = node_el.find(tag)
                             if el2 is not None and el2.text is not None:
@@ -242,7 +242,7 @@ def parse_spec(data: bytes | str, extension: str) -> Dict[str, Any]:
     return _build_internal_spec(spec_obj)
 
 
-def compute_probabilities(root_id: str, nodes: Dict[str, Dict[str, Any]]) -> float:
+def compute_probabilities(root_id: str, nodes: dict[str, dict[str, Any]]) -> float:
     """Recursively compute the probability of the top event.
 
     Parameters
@@ -281,14 +281,14 @@ def compute_probabilities(root_id: str, nodes: Dict[str, Dict[str, Any]]) -> flo
         if typ == "OR":
             p_not = 1.0
             for cp in child_probs:
-                p_not *= (1.0 - cp)
+                p_not *= 1.0 - cp
             return 1.0 - p_not
         raise ValueError(f"Unknown node type '{typ}' for node '{node_id}'")
 
     return _prob(root_id)
 
 
-def expected_loss(nodes: Dict[str, Dict[str, Any]]) -> float:
+def expected_loss(nodes: dict[str, dict[str, Any]]) -> float:
     """Compute the expected loss across all leaves.
 
     The expected loss is the sum over all leaf nodes of
@@ -324,7 +324,7 @@ def expected_loss(nodes: Dict[str, Dict[str, Any]]) -> float:
     return total
 
 
-def top_contributors(nodes: Dict[str, Dict[str, Any]], k: int = 3) -> List[Dict[str, Any]]:
+def top_contributors(nodes: dict[str, dict[str, Any]], k: int = 3) -> list[dict[str, Any]]:
     """Return the top ``k`` leaves by contribution (probability × impact).
 
     Parameters
@@ -340,7 +340,7 @@ def top_contributors(nodes: Dict[str, Dict[str, Any]], k: int = 3) -> List[Dict[
         A list of dictionaries each containing ``id``, ``label`` and
         ``value`` for the top contributors sorted in descending order.
     """
-    contributions: List[Tuple[str, str, float]] = []
+    contributions: list[tuple[str, str, float]] = []
     for node in nodes.values():
         if node["type"] == "LEAF":
             prob = node.get("prob")
@@ -351,7 +351,4 @@ def top_contributors(nodes: Dict[str, Dict[str, Any]], k: int = 3) -> List[Dict[
     # Sort by contribution descending
     contributions.sort(key=lambda x: x[2], reverse=True)
     top = contributions[:k]
-    return [
-        {"id": nid, "label": lbl, "value": val}
-        for nid, lbl, val in top
-    ]
+    return [{"id": nid, "label": lbl, "value": val} for nid, lbl, val in top]

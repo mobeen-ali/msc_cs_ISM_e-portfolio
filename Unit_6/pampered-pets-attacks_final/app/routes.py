@@ -13,8 +13,10 @@ from __future__ import annotations
 import copy
 import io
 import os
-from typing import Any, Dict, Optional, List
+from typing import Any
 
+# YAML is used for exporting specifications
+import yaml  # type: ignore
 from flask import (
     Blueprint,
     current_app,
@@ -28,17 +30,13 @@ from flask import (
 )
 
 from .model import (
-    parse_spec,
+    SpecError,
     compute_probabilities,
     expected_loss,
+    parse_spec,
     top_contributors,
-    SpecError,
 )
 from .viz import render_tree
-
-# YAML is used for exporting specifications
-import yaml  # type: ignore
-
 
 bp = Blueprint("main", __name__)
 
@@ -115,7 +113,7 @@ def analyze_post() -> Any:
 @bp.route("/analyze", methods=["GET"])
 def analyze_get() -> Any:
     """Render the analysis page for the current specification."""
-    spec: Optional[Dict[str, Any]] = session.get("spec")
+    spec: dict[str, Any] | None = session.get("spec")
     if not spec:
         flash("No specification is loaded. Please upload or load a demo.")
         return redirect(url_for("main.index"))
@@ -160,12 +158,12 @@ def analyze_get() -> Any:
 @bp.route("/recalculate", methods=["POST"])
 def recalculate() -> Any:
     """Update leaf probabilities and impacts from form inputs and redirect back."""
-    spec: Optional[Dict[str, Any]] = session.get("spec")
+    spec: dict[str, Any] | None = session.get("spec")
     if not spec:
         flash("No specification is loaded.")
         return redirect(url_for("main.index"))
     nodes = spec["nodes"]
-    errors: List[str] = []
+    errors: list[str] = []
     # Update each leaf from the submitted form
     for node in nodes.values():
         if node["type"] == "LEAF":
@@ -174,8 +172,8 @@ def recalculate() -> Any:
             prob_str = request.form.get(prob_key, "").strip()
             impact_str = request.form.get(impact_key, "").strip()
             # Convert to floats if provided; allow empty to represent None
-            prob_val: Optional[float]
-            impact_val: Optional[float]
+            prob_val: float | None
+            impact_val: float | None
             try:
                 prob_val = float(prob_str) if prob_str != "" else None
             except ValueError:
@@ -206,7 +204,7 @@ def recalculate() -> Any:
 @bp.route("/sensitivity", methods=["POST"])
 def run_sensitivity() -> Any:
     """Run a sensitivity analysis on a selected leaf and multiplier."""
-    spec: Optional[Dict[str, Any]] = session.get("spec")
+    spec: dict[str, Any] | None = session.get("spec")
     if not spec:
         flash("No specification is loaded.")
         return redirect(url_for("main.index"))
@@ -251,8 +249,8 @@ def run_sensitivity() -> Any:
 @bp.route("/apply_sensitivity", methods=["POST"])
 def apply_sensitivity() -> Any:
     """Apply the most recent sensitivity run to the stored specification."""
-    spec: Optional[Dict[str, Any]] = session.get("spec")
-    sensitivity: Optional[Dict[str, Any]] = session.get("sensitivity")
+    spec: dict[str, Any] | None = session.get("spec")
+    sensitivity: dict[str, Any] | None = session.get("sensitivity")
     if not spec or not sensitivity:
         flash("No sensitivity run to apply.")
         return redirect(url_for("main.analyze_get"))
@@ -276,7 +274,7 @@ def apply_sensitivity() -> Any:
 @bp.route("/download/spec")
 def download_spec() -> Any:
     """Serve the currently loaded specification as a YAML file for download."""
-    spec: Optional[Dict[str, Any]] = session.get("spec")
+    spec: dict[str, Any] | None = session.get("spec")
     if not spec:
         flash("No specification to download.")
         return redirect(url_for("main.index"))

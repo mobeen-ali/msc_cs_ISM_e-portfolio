@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import os
 import time
-from typing import Dict, Any, Tuple
+from typing import Any
 
 import matplotlib
 
@@ -20,28 +20,29 @@ import matplotlib
 matplotlib.use("Agg")  # noqa: E402  # must be set before pyplot import
 
 import matplotlib.pyplot as plt
+
 try:
     import networkx as nx  # type: ignore
 except Exception:
     nx = None  # networkx may be unavailable
 
 
-def render_tree(root_id: str, nodes: Dict[str, Dict[str, Any]]) -> str:
+def render_tree(root_id: str, nodes: dict[str, dict[str, Any]]) -> str:
     """Render the attack tree to a PNG file and return its relative path."""
     import math
     import textwrap
-    import matplotlib.pyplot as plt
 
     # --- helpers -------------------------------------------------------------
     def wrap_label(s: str, width: int = 16, max_lines: int = 3) -> str:
         lines = textwrap.wrap(s, width=width)
         if len(lines) > max_lines:
-            lines = lines[:max_lines - 1] + [lines[max_lines - 1] + "…"]
+            lines = lines[: max_lines - 1] + [lines[max_lines - 1] + "…"]
         return "\n".join(lines) if lines else s
 
-    def node_depths(root: str) -> Dict[str, int]:
+    def node_depths(root: str) -> dict[str, int]:
         """Compute depth from root (for fallback tree layout & rank separation)."""
         from collections import deque
+
         depth = {root: 0}
         q = deque([root])
         while q:
@@ -56,7 +57,7 @@ def render_tree(root_id: str, nodes: Dict[str, Dict[str, Any]]) -> str:
     N = max(1, len(nodes))
     # Wider/taller for larger trees
     fig_w = min(28, max(10, 0.6 * math.sqrt(N) * 6))
-    fig_h = min(18, max(7,  0.6 * math.sqrt(N) * 4))
+    fig_h = min(18, max(7, 0.6 * math.sqrt(N) * 4))
 
     fig, ax = plt.subplots(figsize=(fig_w, fig_h))
     ax.clear()
@@ -100,11 +101,11 @@ def render_tree(root_id: str, nodes: Dict[str, Dict[str, Any]]) -> str:
             pos = nx.spring_layout(G, k=k * 3, iterations=300, seed=42)
     else:
         # original simple recursive fallback
-        def layout(node_id: str, depth: int = 0) -> Tuple[Dict[str, Tuple[float, float]], float]:
+        def layout(node_id: str, depth: int = 0) -> tuple[dict[str, tuple[float, float]], float]:
             node = nodes[node_id]
             if node["type"] == "LEAF" or not node.get("children"):
                 return {node_id: (0.0, -depth)}, 1.0
-            positions: Dict[str, Tuple[float, float]] = {}
+            positions: dict[str, tuple[float, float]] = {}
             total_width = 0.0
             x_offset = 0.0
             for child in node["children"]:
@@ -116,6 +117,7 @@ def render_tree(root_id: str, nodes: Dict[str, Dict[str, Any]]) -> str:
             centre = total_width / 2.0 - 0.5
             positions[node_id] = (centre, -depth)
             return positions, total_width
+
         positions, _ = layout(root_id)
         pos = positions
 
@@ -129,7 +131,8 @@ def render_tree(root_id: str, nodes: Dict[str, Dict[str, Any]]) -> str:
             if not nodelist:
                 continue
             nx.draw_networkx_nodes(
-                G, pos,
+                G,
+                pos,
                 nodelist=nodelist,
                 node_shape=shape,
                 node_size=450,  # bigger nodes reduce label crowding on top
@@ -141,7 +144,7 @@ def render_tree(root_id: str, nodes: Dict[str, Dict[str, Any]]) -> str:
         nx.draw_networkx_edges(G, pos, arrows=False, ax=ax)
 
         # Labels: wrap + offset + bbox for readability
-        depths = node_depths(root_id)
+        node_depths(root_id)
         # Font scales slightly with figure size; clamp to reasonable range
         base_font = max(7, min(12, int(8 + 0.2 * math.sqrt(N))))
         for n in G.nodes():
@@ -151,9 +154,12 @@ def render_tree(root_id: str, nodes: Dict[str, Dict[str, Any]]) -> str:
             # Offset label above node; a bit more offset if dense levels
             offset_pts = 8
             ax.annotate(
-                lbl, xy=(x, y), xytext=(0, offset_pts),
+                lbl,
+                xy=(x, y),
+                xytext=(0, offset_pts),
                 textcoords="offset points",
-                ha="center", va="bottom",
+                ha="center",
+                va="bottom",
                 fontsize=base_font,
                 linespacing=0.95,
                 bbox=dict(facecolor="white", edgecolor="none", alpha=0.8, boxstyle="round,pad=0.2"),
@@ -177,9 +183,12 @@ def render_tree(root_id: str, nodes: Dict[str, Dict[str, Any]]) -> str:
             colour = "#edc064" if typ in ("AND", "OR") else "#63adf7"
             ax.scatter(x, y, marker=marker, s=450, color=colour, edgecolors="black", linewidths=1.0)
             ax.annotate(
-                lbl, xy=(x, y), xytext=(0, 12),
+                lbl,
+                xy=(x, y),
+                xytext=(0, 12),
                 textcoords="offset points",
-                ha="center", va="bottom",
+                ha="center",
+                va="bottom",
                 fontsize=9,
                 bbox=dict(facecolor="white", edgecolor="none", alpha=0.8, boxstyle="round,pad=0.2"),
                 clip_on=False,
@@ -188,12 +197,36 @@ def render_tree(root_id: str, nodes: Dict[str, Dict[str, Any]]) -> str:
     import matplotlib.lines as mlines
 
     legend_handles = [
-        mlines.Line2D([], [], color='black', marker='s', linestyle='None',
-                    markerfacecolor='#f9d793', markersize=10, label='AND Node (square)'),
-        mlines.Line2D([], [], color='black', marker='o', linestyle='None',
-                    markerfacecolor='#f9d793', markersize=10, label='OR Node (circle)'),
-        mlines.Line2D([], [], color='black', marker='v', linestyle='None',
-                    markerfacecolor='#94c3f3', markersize=10, label='LEAF Node (triangle)'),
+        mlines.Line2D(
+            [],
+            [],
+            color='black',
+            marker='s',
+            linestyle='None',
+            markerfacecolor='#f9d793',
+            markersize=10,
+            label='AND Node (square)',
+        ),
+        mlines.Line2D(
+            [],
+            [],
+            color='black',
+            marker='o',
+            linestyle='None',
+            markerfacecolor='#f9d793',
+            markersize=10,
+            label='OR Node (circle)',
+        ),
+        mlines.Line2D(
+            [],
+            [],
+            color='black',
+            marker='v',
+            linestyle='None',
+            markerfacecolor='#94c3f3',
+            markersize=10,
+            label='LEAF Node (triangle)',
+        ),
     ]
 
     # Create legend above the plot
@@ -203,11 +236,10 @@ def render_tree(root_id: str, nodes: Dict[str, Dict[str, Any]]) -> str:
         bbox_to_anchor=(0.5, 1.12),
         ncol=3,
         frameon=True,
-        fontsize=10
+        fontsize=10,
     )
 
     # --- Save higher DPI, extra tight bbox -----------------------------------
-    import os, time
     timestamp = int(time.time() * 1000)
     filename = f"tree_{timestamp}.png"
     current_dir = os.path.dirname(os.path.abspath(__file__))

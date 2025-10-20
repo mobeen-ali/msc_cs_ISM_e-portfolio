@@ -1,18 +1,15 @@
-[tool.ruff]
-# Enforce a reasonable line length and target Python version.
+# ruff.toml (no [tool.ruff] header here)
 line-length = 100
 target-version = "py311"
+exclude = ["venv", "static/outputs", "__pycache__"]
 
-# Select common error and style codes: E (pycodestyle errors),
-# F (Pyflakes), W (warnings) and I001 (import sorting).  These cover
-# most of the issues one would want to address in a small project.
-select = ["E", "F", "W", "I001"]
-
-# Exclude the virtual environment and outputs from linting.  Note that
-# ``static/outputs`` contains generated PNGs and should not be
-# inspected.
-exclude = [
-  "venv",
-  "static/outputs",
-  "__pycache__",
-]
+[lint]
+# Use "I" (isort rules), not the old "I001"
+select = ["E", "F", "W", "I", "UP", "COM", "EXE", "ISC", "PIE"]
+# example ignores, add/remove as needed:
+# ignore = ["E203", "E266"]
+# Optional: turn on preview rules for more fixes
+preview = true
+[format]
+# optional
+quote-style = "preserve"

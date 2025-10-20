@@ -1,0 +1,1340 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/__init__.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 15,
+                        "endLine": 59,
+                        "startColumn": 15,
+                        "startLine": 59
+                      },
+                      "insertedContent": {
+                        "text": "\n"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Add trailing newline"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/__init__.py"
+                },
+                "region": {
+                  "endColumn": 15,
+                  "endLine": 59,
+                  "startColumn": 15,
+                  "startLine": 59
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "No newline at end of file"
+          },
+          "ruleId": "W292"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/model.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 1,
+                        "endLine": 23,
+                        "startColumn": 1,
+                        "startLine": 17
+                      },
+                      "insertedContent": {
+                        "text": "from __future__ import annotations\n\nimport json\nfrom typing import Any, Dict, List, Optional, Tuple\n\nimport yaml  # type: ignore\n\n"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Organize imports"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/model.py"
+                },
+                "region": {
+                  "endColumn": 12,
+                  "endLine": 22,
+                  "startColumn": 1,
+                  "startLine": 17
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Import block is un-sorted or un-formatted"
+          },
+          "ruleId": "I001"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/model.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 52,
+                        "endLine": 20,
+                        "startColumn": 1,
+                        "startLine": 20
+                      },
+                      "insertedContent": {
+                        "text": "from typing import Any, Dict, List, Tuple"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Remove unused import: `typing.Optional`"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/model.py"
+                },
+                "region": {
+                  "endColumn": 52,
+                  "endLine": 20,
+                  "startColumn": 44,
+                  "startLine": 20
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "`typing.Optional` imported but unused"
+          },
+          "ruleId": "F401"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/model.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 6,
+                        "endLine": 357,
+                        "startColumn": 6,
+                        "startLine": 357
+                      },
+                      "insertedContent": {
+                        "text": "\n"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Add trailing newline"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/model.py"
+                },
+                "region": {
+                  "endColumn": 6,
+                  "endLine": 357,
+                  "startColumn": 6,
+                  "startLine": 357
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "No newline at end of file"
+          },
+          "ruleId": "W292"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/routes.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 1,
+                        "endLine": 43,
+                        "startColumn": 1,
+                        "startLine": 11
+                      },
+                      "insertedContent": {
+                        "text": "from __future__ import annotations\n\nimport copy\nimport io\nimport os\nfrom typing import Any, Dict, List, Optional\n\n# YAML is used for exporting specifications\nimport yaml  # type: ignore\nfrom flask import (\n    Blueprint,\n    current_app,\n    flash,\n    redirect,\n    render_template,\n    request,\n    send_file,\n    session,\n    url_for,\n)\n\nfrom .model import (\n    SpecError,\n    compute_probabilities,\n    expected_loss,\n    parse_spec,\n    top_contributors,\n)\nfrom .viz import render_tree\n\n"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Organize imports"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/routes.py"
+                },
+                "region": {
+                  "endColumn": 12,
+                  "endLine": 40,
+                  "startColumn": 1,
+                  "startLine": 11
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Import block is un-sorted or un-formatted"
+          },
+          "ruleId": "I001"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/routes.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 6,
+                        "endLine": 339,
+                        "startColumn": 6,
+                        "startLine": 339
+                      },
+                      "insertedContent": {
+                        "text": "\n"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Add trailing newline"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/routes.py"
+                },
+                "region": {
+                  "endColumn": 6,
+                  "endLine": 339,
+                  "startColumn": 6,
+                  "startLine": 339
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "No newline at end of file"
+          },
+          "ruleId": "W292"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 1,
+                        "endLine": 19,
+                        "startColumn": 1,
+                        "startLine": 11
+                      },
+                      "insertedContent": {
+                        "text": "from __future__ import annotations\n\nimport os\nimport time\nfrom typing import Any, Dict, Tuple\n\nimport matplotlib\n\n"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Organize imports"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                },
+                "region": {
+                  "endColumn": 18,
+                  "endLine": 17,
+                  "startColumn": 1,
+                  "startLine": 11
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Import block is un-sorted or un-formatted"
+          },
+          "ruleId": "I001"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 1,
+                        "endLine": 14,
+                        "startColumn": 1,
+                        "startLine": 13
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Remove unused import: `os`"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                },
+                "region": {
+                  "endColumn": 10,
+                  "endLine": 13,
+                  "startColumn": 8,
+                  "startLine": 13
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "`os` imported but unused"
+          },
+          "ruleId": "F401"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 1,
+                        "endLine": 15,
+                        "startColumn": 1,
+                        "startLine": 14
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Remove unused import: `time`"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                },
+                "region": {
+                  "endColumn": 12,
+                  "endLine": 14,
+                  "startColumn": 8,
+                  "startLine": 14
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "`time` imported but unused"
+          },
+          "ruleId": "F401"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 1,
+                        "endLine": 23,
+                        "startColumn": 1,
+                        "startLine": 22
+                      },
+                      "insertedContent": {
+                        "text": "import matplotlib.pyplot as plt\n\n"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Organize imports"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                },
+                "region": {
+                  "endColumn": 32,
+                  "endLine": 22,
+                  "startColumn": 1,
+                  "startLine": 22
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Import block is un-sorted or un-formatted"
+          },
+          "ruleId": "I001"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 1,
+                        "endLine": 23,
+                        "startColumn": 1,
+                        "startLine": 22
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Remove unused import: `matplotlib.pyplot`"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                },
+                "region": {
+                  "endColumn": 32,
+                  "endLine": 22,
+                  "startColumn": 29,
+                  "startLine": 22
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "`matplotlib.pyplot` imported but unused"
+          },
+          "ruleId": "F401"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 1,
+                        "endLine": 34,
+                        "startColumn": 1,
+                        "startLine": 31
+                      },
+                      "insertedContent": {
+                        "text": "    import math\n    import textwrap\n\n    import matplotlib.pyplot as plt\n"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Organize imports"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                },
+                "region": {
+                  "endColumn": 36,
+                  "endLine": 33,
+                  "startColumn": 5,
+                  "startLine": 31
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Import block is un-sorted or un-formatted"
+          },
+          "ruleId": "I001"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 1,
+                        "endLine": 34,
+                        "startColumn": 1,
+                        "startLine": 33
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Remove definition: `plt`"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                },
+                "region": {
+                  "endColumn": 36,
+                  "endLine": 33,
+                  "startColumn": 33,
+                  "startLine": 33
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Redefinition of unused `plt` from line 22"
+          },
+          "ruleId": "F811"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 18,
+                        "endLine": 144,
+                        "startColumn": 9,
+                        "startLine": 144
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Remove assignment to unused variable `depths`"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                },
+                "region": {
+                  "endColumn": 15,
+                  "endLine": 144,
+                  "startColumn": 9,
+                  "startLine": 144
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Local variable `depths` is assigned to but never used"
+          },
+          "ruleId": "F841"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 20,
+                        "endLine": 210,
+                        "startColumn": 1,
+                        "startLine": 210
+                      },
+                      "insertedContent": {
+                        "text": "    import os\n    import time"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Split imports"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                },
+                "region": {
+                  "endColumn": 20,
+                  "endLine": 210,
+                  "startColumn": 5,
+                  "startLine": 210
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Multiple imports on one line"
+          },
+          "ruleId": "E401"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 1,
+                        "endLine": 211,
+                        "startColumn": 1,
+                        "startLine": 210
+                      },
+                      "insertedContent": {
+                        "text": "    import os\n    import time\n"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Organize imports"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                },
+                "region": {
+                  "endColumn": 20,
+                  "endLine": 210,
+                  "startColumn": 5,
+                  "startLine": 210
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Import block is un-sorted or un-formatted"
+          },
+          "ruleId": "I001"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 1,
+                        "endLine": 211,
+                        "startColumn": 1,
+                        "startLine": 210
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Remove definition: `os`"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                },
+                "region": {
+                  "endColumn": 14,
+                  "endLine": 210,
+                  "startColumn": 12,
+                  "startLine": 210
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Redefinition of unused `os` from line 13"
+          },
+          "ruleId": "F811"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 1,
+                        "endLine": 211,
+                        "startColumn": 1,
+                        "startLine": 210
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Remove definition: `time`"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/app/viz.py"
+                },
+                "region": {
+                  "endColumn": 20,
+                  "endLine": 210,
+                  "startColumn": 16,
+                  "startLine": 210
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Redefinition of unused `time` from line 14"
+          },
+          "ruleId": "F811"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/run.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 52,
+                        "endLine": 25,
+                        "startColumn": 51,
+                        "startLine": 25
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Remove trailing whitespace"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/run.py"
+                },
+                "region": {
+                  "endColumn": 52,
+                  "endLine": 25,
+                  "startColumn": 51,
+                  "startLine": 25
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Trailing whitespace"
+          },
+          "ruleId": "W291"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/run.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 52,
+                        "endLine": 25,
+                        "startColumn": 52,
+                        "startLine": 25
+                      },
+                      "insertedContent": {
+                        "text": "\n"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Add trailing newline"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/run.py"
+                },
+                "region": {
+                  "endColumn": 52,
+                  "endLine": 25,
+                  "startColumn": 52,
+                  "startLine": 25
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "No newline at end of file"
+          },
+          "ruleId": "W292"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/tests/test_logic.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 1,
+                        "endLine": 9,
+                        "startColumn": 1,
+                        "startLine": 3
+                      },
+                      "insertedContent": {
+                        "text": "import math\n\nfrom app.model import compute_probabilities, expected_loss, top_contributors\n\n\n"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Organize imports"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/tests/test_logic.py"
+                },
+                "region": {
+                  "endColumn": 77,
+                  "endLine": 6,
+                  "startColumn": 1,
+                  "startLine": 3
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Import block is un-sorted or un-formatted"
+          },
+          "ruleId": "I001"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/tests/test_logic.py"
+                },
+                "region": {
+                  "endColumn": 110,
+                  "endLine": 12,
+                  "startColumn": 101,
+                  "startLine": 12
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Line too long (109 > 100)"
+          },
+          "ruleId": "E501"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/tests/test_logic.py"
+                },
+                "region": {
+                  "endColumn": 111,
+                  "endLine": 23,
+                  "startColumn": 101,
+                  "startLine": 23
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Line too long (110 > 100)"
+          },
+          "ruleId": "E501"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/tests/test_logic.py"
+                },
+                "region": {
+                  "endColumn": 110,
+                  "endLine": 35,
+                  "startColumn": 101,
+                  "startLine": 35
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Line too long (109 > 100)"
+          },
+          "ruleId": "E501"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/tests/test_logic.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 46,
+                        "endLine": 54,
+                        "startColumn": 46,
+                        "startLine": 54
+                      },
+                      "insertedContent": {
+                        "text": "\n"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Add trailing newline"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/tests/test_logic.py"
+                },
+                "region": {
+                  "endColumn": 46,
+                  "endLine": 54,
+                  "startColumn": 46,
+                  "startLine": 54
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "No newline at end of file"
+          },
+          "ruleId": "W292"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/tests/test_parser.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 1,
+                        "endLine": 7,
+                        "startColumn": 1,
+                        "startLine": 4
+                      },
+                      "insertedContent": {
+                        "text": "from app.model import SpecError, parse_spec\n\n\n"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Organize imports"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/MSc%20Computer%20Science/Module_5_ISM/msc_cs_ISM_e-portfolio/Unit_6/pampered-pets-attacks_final/tests/test_parser.py"
+                },
+                "region": {
+                  "endColumn": 44,
+                  "endLine": 4,
+                  "startColumn": 1,
+                  "startLine": 4
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Import block is un-sorted or un-formatted"
+          },
+          "ruleId": "I001"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "informationUri": "https://github.com/astral-sh/ruff",
+          "name": "ruff",
+          "rules": [
+            {
+              "fullDescription": {
+                "text": "## What it does\nCheck for multiple imports on one line.\n\n## Why is this bad?\nAccording to [PEP 8], \"imports should usually be on separate lines.\"\n\n## Example\n```python\nimport sys, os\n```\n\nUse instead:\n```python\nimport os\nimport sys\n```\n\n[PEP 8]: https://peps.python.org/pep-0008/#imports\n"
+              },
+              "help": {
+                "text": "Multiple imports on one line"
+              },
+              "helpUri": "https://docs.astral.sh/ruff/rules/multiple-imports-on-one-line",
+              "id": "E401",
+              "properties": {
+                "id": "E401",
+                "kind": "pycodestyle",
+                "name": "multiple-imports-on-one-line",
+                "problem.severity": "error"
+              },
+              "shortDescription": {
+                "text": "Multiple imports on one line"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "## What it does\nChecks for lines that exceed the specified maximum character length.\n\n## Why is this bad?\nOverlong lines can hurt readability. [PEP 8], for example, recommends\nlimiting lines to 79 characters. By default, this rule enforces a limit\nof 88 characters for compatibility with Black and the Ruff formatter,\nthough that limit is configurable via the [`line-length`] setting.\n\nIn the interest of pragmatism, this rule makes a few exceptions when\ndetermining whether a line is overlong. Namely, it:\n\n1. Ignores lines that consist of a single \"word\" (i.e., without any\n   whitespace between its characters).\n2. Ignores lines that end with a URL, as long as the URL starts before\n   the line-length threshold.\n3. Ignores line that end with a pragma comment (e.g., `# type: ignore`\n   or `# noqa`), as long as the pragma comment starts before the\n   line-length threshold. That is, a line will not be flagged as\n   overlong if a pragma comment _causes_ it to exceed the line length.\n   (This behavior aligns with that of the Ruff formatter.)\n4. Ignores SPDX license identifiers and copyright notices\n   (e.g., `# SPDX-License-Identifier: MIT`), which are machine-readable\n   and should _not_ wrap over multiple lines.\n\nIf [`lint.pycodestyle.ignore-overlong-task-comments`] is `true`, this rule will\nalso ignore comments that start with any of the specified [`lint.task-tags`]\n(e.g., `# TODO:`).\n\n## Example\n```python\nmy_function(param1, param2, param3, param4, param5, param6, param7, param8, param9, param10)\n```\n\nUse instead:\n```python\nmy_function(\n    param1, param2, param3, param4, param5,\n    param6, param7, param8, param9, param10\n)\n```\n\n## Error suppression\nHint: when suppressing `E501` errors within multi-line strings (like\ndocstrings), the `noqa` directive should come at the end of the string\n(after the closing triple quote), and will apply to the entire string, like\nso:\n\n```python\n\"\"\"Lorem ipsum dolor sit amet.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.\n\"\"\"  # noqa: E501\n```\n\n## Options\n- `line-length`\n- `lint.task-tags`\n- `lint.pycodestyle.ignore-overlong-task-comments`\n- `lint.pycodestyle.max-line-length`\n\n[PEP 8]: https://peps.python.org/pep-0008/#maximum-line-length\n"
+              },
+              "help": {
+                "text": "Line too long ({width} > {limit})"
+              },
+              "helpUri": "https://docs.astral.sh/ruff/rules/line-too-long",
+              "id": "E501",
+              "properties": {
+                "id": "E501",
+                "kind": "pycodestyle",
+                "name": "line-too-long",
+                "problem.severity": "error"
+              },
+              "shortDescription": {
+                "text": "Line too long ({width} > {limit})"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "## What it does\nChecks for unused imports.\n\n## Why is this bad?\nUnused imports add a performance overhead at runtime, and risk creating\nimport cycles. They also increase the cognitive load of reading the code.\n\nIf an import statement is used to check for the availability or existence\nof a module, consider using `importlib.util.find_spec` instead.\n\nIf an import statement is used to re-export a symbol as part of a module's\npublic interface, consider using a \"redundant\" import alias, which\ninstructs Ruff (and other tools) to respect the re-export, and avoid\nmarking it as unused, as in:\n\n```python\nfrom module import member as member\n```\n\nAlternatively, you can use `__all__` to declare a symbol as part of the module's\ninterface, as in:\n\n```python\n# __init__.py\nimport some_module\n\n__all__ = [\"some_module\"]\n```\n\n## Preview\nWhen [preview] is enabled (and certain simplifying assumptions\nare met), we analyze all import statements for a given module\nwhen determining whether an import is used, rather than simply\nthe last of these statements. This can result in both different and\nmore import statements being marked as unused.\n\nFor example, if a module consists of\n\n```python\nimport a\nimport a.b\n```\n\nthen both statements are marked as unused under [preview], whereas\nonly the second is marked as unused under stable behavior.\n\nAs another example, if a module consists of\n\n```python\nimport a.b\nimport a\n\na.b.foo()\n```\n\nthen a diagnostic will only be emitted for the first line under [preview],\nwhereas a diagnostic would only be emitted for the second line under\nstable behavior.\n\nNote that this behavior is somewhat subjective and is designed\nto conform to the developer's intuition rather than Python's actual\nexecution. To wit, the statement `import a.b` automatically executes\n`import a`, so in some sense `import a` is _always_ redundant\nin the presence of `import a.b`.\n\n\n## Fix safety\n\nFixes to remove unused imports are safe, except in `__init__.py` files.\n\nApplying fixes to `__init__.py` files is currently in preview. The fix offered depends on the\ntype of the unused import. Ruff will suggest a safe fix to export first-party imports with\neither a redundant alias or, if already present in the file, an `__all__` entry. If multiple\n`__all__` declarations are present, Ruff will not offer a fix. Ruff will suggest an unsafe fix\nto remove third-party and standard library imports -- the fix is unsafe because the module's\ninterface changes.\n\nSee [this FAQ section](https://docs.astral.sh/ruff/faq/#how-does-ruff-determine-which-of-my-imports-are-first-party-third-party-etc)\nfor more details on how Ruff\ndetermines whether an import is first or third-party.\n\n## Example\n\n```python\nimport numpy as np  # unused import\n\n\ndef area(radius):\n    return 3.14 * radius**2\n```\n\nUse instead:\n\n```python\ndef area(radius):\n    return 3.14 * radius**2\n```\n\nTo check the availability of a module, use `importlib.util.find_spec`:\n\n```python\nfrom importlib.util import find_spec\n\nif find_spec(\"numpy\") is not None:\n    print(\"numpy is installed\")\nelse:\n    print(\"numpy is not installed\")\n```\n\n## Options\n- `lint.ignore-init-module-imports`\n- `lint.pyflakes.allowed-unused-imports`\n\n## References\n- [Python documentation: `import`](https://docs.python.org/3/reference/simple_stmts.html#the-import-statement)\n- [Python documentation: `importlib.util.find_spec`](https://docs.python.org/3/library/importlib.html#importlib.util.find_spec)\n- [Typing documentation: interface conventions](https://typing.python.org/en/latest/spec/distributing.html#library-interface-public-and-private-symbols)\n\n[preview]: https://docs.astral.sh/ruff/preview/\n"
+              },
+              "help": {
+                "text": "`{name}` imported but unused; consider using `importlib.util.find_spec` to test for availability"
+              },
+              "helpUri": "https://docs.astral.sh/ruff/rules/unused-import",
+              "id": "F401",
+              "properties": {
+                "id": "F401",
+                "kind": "Pyflakes",
+                "name": "unused-import",
+                "problem.severity": "error"
+              },
+              "shortDescription": {
+                "text": "`{name}` imported but unused; consider using `importlib.util.find_spec` to test for availability"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "## What it does\nChecks for variable definitions that redefine (or \"shadow\") unused\nvariables.\n\n## Why is this bad?\nRedefinitions of unused names are unnecessary and often indicative of a\nmistake.\n\n## Example\n```python\nimport foo\nimport bar\nimport foo  # Redefinition of unused `foo` from line 1\n```\n\nUse instead:\n```python\nimport foo\nimport bar\n```\n"
+              },
+              "help": {
+                "text": "Redefinition of unused `{name}` from {row}"
+              },
+              "helpUri": "https://docs.astral.sh/ruff/rules/redefined-while-unused",
+              "id": "F811",
+              "properties": {
+                "id": "F811",
+                "kind": "Pyflakes",
+                "name": "redefined-while-unused",
+                "problem.severity": "error"
+              },
+              "shortDescription": {
+                "text": "Redefinition of unused `{name}` from {row}"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "## What it does\nChecks for the presence of unused variables in function scopes.\n\n## Why is this bad?\nA variable that is defined but not used is likely a mistake, and should\nbe removed to avoid confusion.\n\nIf a variable is intentionally defined-but-not-used, it should be\nprefixed with an underscore, or some other value that adheres to the\n[`lint.dummy-variable-rgx`] pattern.\n\n## Example\n```python\ndef foo():\n    x = 1\n    y = 2\n    return x\n```\n\nUse instead:\n```python\ndef foo():\n    x = 1\n    return x\n```\n\n## Fix safety\n\nThis rule's fix is marked as unsafe because removing an unused variable assignment may\ndelete comments that are attached to the assignment.\n\n## See also\n\nThis rule does not apply to bindings in unpacked assignments (e.g. `x, y = 1, 2`). See\n[`unused-unpacked-variable`][RUF059] for this case.\n\n## Options\n- `lint.dummy-variable-rgx`\n\n[RUF059]: https://docs.astral.sh/ruff/rules/unused-unpacked-variable/\n"
+              },
+              "help": {
+                "text": "Local variable `{name}` is assigned to but never used"
+              },
+              "helpUri": "https://docs.astral.sh/ruff/rules/unused-variable",
+              "id": "F841",
+              "properties": {
+                "id": "F841",
+                "kind": "Pyflakes",
+                "name": "unused-variable",
+                "problem.severity": "error"
+              },
+              "shortDescription": {
+                "text": "Local variable `{name}` is assigned to but never used"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "## What it does\nDe-duplicates, groups, and sorts imports based on the provided `isort` settings.\n\n## Why is this bad?\nConsistency is good. Use a common convention for imports to make your code\nmore readable and idiomatic.\n\n## Example\n```python\nimport pandas\nimport numpy as np\n```\n\nUse instead:\n```python\nimport numpy as np\nimport pandas\n```\n\n"
+              },
+              "help": {
+                "text": "Import block is un-sorted or un-formatted"
+              },
+              "helpUri": "https://docs.astral.sh/ruff/rules/unsorted-imports",
+              "id": "I001",
+              "properties": {
+                "id": "I001",
+                "kind": "isort",
+                "name": "unsorted-imports",
+                "problem.severity": "error"
+              },
+              "shortDescription": {
+                "text": "Import block is un-sorted or un-formatted"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "## What it does\nChecks for superfluous trailing whitespace.\n\n## Why is this bad?\nAccording to [PEP 8], \"avoid trailing whitespace anywhere. Because it’s usually\ninvisible, it can be confusing\"\n\n## Example\n```python\nspam(1) \\n#\n```\n\nUse instead:\n```python\nspam(1)\\n#\n```\n\n## Fix safety\n\nThis fix is marked unsafe if the whitespace is inside a multiline string,\nas removing it changes the string's content.\n\n[PEP 8]: https://peps.python.org/pep-0008/#other-recommendations\n"
+              },
+              "help": {
+                "text": "Trailing whitespace"
+              },
+              "helpUri": "https://docs.astral.sh/ruff/rules/trailing-whitespace",
+              "id": "W291",
+              "properties": {
+                "id": "W291",
+                "kind": "pycodestyle",
+                "name": "trailing-whitespace",
+                "problem.severity": "error"
+              },
+              "shortDescription": {
+                "text": "Trailing whitespace"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "## What it does\nChecks for files missing a new line at the end of the file.\n\n## Why is this bad?\nTrailing blank lines in a file are superfluous.\n\nHowever, the last line of the file should end with a newline.\n\n## Example\n```python\nspam(1)\n```\n\nUse instead:\n```python\nspam(1)\\n\n```\n"
+              },
+              "help": {
+                "text": "No newline at end of file"
+              },
+              "helpUri": "https://docs.astral.sh/ruff/rules/missing-newline-at-end-of-file",
+              "id": "W292",
+              "properties": {
+                "id": "W292",
+                "kind": "pycodestyle",
+                "name": "missing-newline-at-end-of-file",
+                "problem.severity": "error"
+              },
+              "shortDescription": {
+                "text": "No newline at end of file"
+              }
+            }
+          ],
+          "version": "0.14.1"
+        }
+      }
+    }
+  ],
+  "version": "2.1.0"
+}
