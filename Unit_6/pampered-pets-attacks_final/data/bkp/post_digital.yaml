@@ -1,0 +1,123 @@
+id: top_post
+label: "Loss from disruption/compromise of online sales (post)"
+type: OR
+children:
+  - app
+  - skim
+  - dos
+  - pci
+  - auth
+  - cloud_misconfig
+  - secrets_leak
+  - dep_comp
+
+nodes:
+  # --- App-layer defects ---
+  - id: app
+    label: "Application vulnerabilities exploited"
+    type: OR
+    children: [sqli, xss]
+
+  - id: sqli
+    label: "SQL injection compromises data/state"
+    type: LEAF
+    prob: null
+    impact: null
+
+  - id: xss
+    label: "Cross-site scripting enables session theft/defacement"
+    type: LEAF
+    prob: null
+    impact: null
+
+  # --- Web-skimming branch (runtime 3rd-party) ---
+  - id: skim
+    label: "Checkout web-skimming on client side"
+    type: AND
+    children: [third_js, weak_controls]
+
+  - id: third_js
+    label: "Third-party JS dependency loaded at checkout"
+    type: LEAF
+    prob: null
+    impact: null
+
+  - id: weak_controls
+    label: "Weak CSP/SRI/monitoring fails to detect injection"
+    type: LEAF
+    prob: null
+    impact: null
+
+  # --- DoS availability branch ---
+  - id: dos
+    label: "Denial of service impacts storefront/checkout"
+    type: AND
+    children: [dos_event, weak_waf_cdn]
+
+  - id: dos_event
+    label: "Sustained traffic flood/exhaustion event"
+    type: LEAF
+    prob: null
+    impact: null
+
+  - id: weak_waf_cdn
+    label: "Weak WAF/CDN/auto-scale → prolonged outage"
+    type: LEAF
+    prob: null
+    impact: null
+
+  # --- PCI exposure residual risk (hosted/redirected payments still in scope edge cases) ---
+  - id: pci
+    label: "Residual PCI exposure/mis-scoped handling"
+    type: LEAF
+    prob: null
+    impact: null
+
+  # --- New: Account takeover risks (auth subtree) ---
+  - id: auth
+    label: "Account takeover of customer/admin accounts"
+    type: OR
+    children: [weak_pw, no_mfa]
+
+  - id: weak_pw
+    label: "Weak password policy / credential stuffing succeeds"
+    type: LEAF
+    prob: null
+    impact: null
+
+  - id: no_mfa
+    label: "No MFA on admin/staff accounts enables privilege abuse"
+    type: LEAF
+    prob: null
+    impact: null
+
+  # --- New: Cloud storage/IAM misconfiguration ---
+  - id: cloud_misconfig
+    label: "Cloud storage/IAM misconfiguration exposes data"
+    type: OR
+    children: [public_bucket, excessive_perms]
+
+  - id: public_bucket
+    label: "Order/PII bucket publicly readable/listable"
+    type: LEAF
+    prob: null
+    impact: null
+
+  - id: excessive_perms
+    label: "Over-broad IAM role allows data exfiltration"
+    type: LEAF
+    prob: null
+    impact: null
+
+  # --- New: Secrets/CI leakage & supply chain compromise ---
+  - id: secrets_leak
+    label: "Leaked API keys/CI secrets enable unauthorized changes"
+    type: LEAF
+    prob: null
+    impact: null
+
+  - id: dep_comp
+    label: "Compromised package/dependency contaminates build"
+    type: LEAF
+    prob: null
+    impact: null

@@ -1,0 +1,358 @@
+base.html
+<!doctype html>
+<html lang="en">
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['\\(', '\\)'], ['$', '$']],
+      displayMath: [['\\[', '\\]']],
+    },
+    options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('formulaHelpBtn');
+    if (!btn) return;
+
+    const contentEl = document.getElementById('formulaHelpContent');
+
+    const pop = new bootstrap.Popover(btn, {
+      content: () => contentEl.innerHTML, // inject the hidden HTML
+      html: true,
+      sanitize: false,                    // allow MathJax HTML
+      placement: 'auto',
+      container: 'body',
+      customClass: 'math-popover'
+    });
+
+    btn.addEventListener('shown.bs.popover', () => {
+      const id = btn.getAttribute('aria-describedby');
+      const popEl = document.getElementById(id);
+      if (window.MathJax && popEl) {
+        MathJax.typesetPromise([popEl]);  // typeset the LaTeX inside the popover
+      }
+    });
+  });
+</script>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Attack Tree Analyzer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body class="bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="{{ url_for('main.index') }}">
+        Attack Tree Analyzer
+      </a>
+    </div>
+  </nav>
+
+  <main class="container my-4">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="border-top py-4 mt-5 small">
+    <div class="container d-flex justify-content-between">
+      <span class="text-muted">© 2025 — Attack Tree Analyzer</span>
+      <span class="text-muted">Flask + Bootstrap 5</span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+
+analyze.html
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+  <h1 class="mb-0">Attack Tree Analysis</h1>
+  <div class="d-flex gap-2">
+    <a href="{{ url_for('main.index') }}" class="btn btn-outline-secondary">Home</a>
+    <a href="{{ url_for('main.download_spec') }}" class="btn btn-outline-primary">Download Updated Spec (YAML)</a>
+    {% if png_path %}
+    <a href="{{ url_for('main.download_png') }}" class="btn btn-outline-primary">Download PNG</a>
+    {% endif %}
+  </div>
+</div>
+
+<div class="card shadow-sm mb-4">
+  <div class="card-header bg-white">
+    <h5 class="mb-0">Edit Leaf Parameters</h5>
+  </div>
+  <div class="card-body">
+    <form method="post" action="{{ url_for('main.recalculate') }}">
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm align-middle">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Label</th>
+              <th scope="col">Probability</th>
+              <th scope="col">Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for leaf in leaves %}
+            <tr>
+              <td class="text-monospace">{{ leaf.id }}</td>
+              <td>{{ leaf.label }}</td>
+              <td>
+                <input type="number" name="prob_{{ leaf.id }}" class="form-control form-control-sm" step="any" min="0"
+                  max="1" value="{{ '' if leaf.prob is none else leaf.prob }}">
+              </td>
+              <td>
+                <div class="input-group input-group-sm">
+                  <span class="input-group-text">£</span>
+                  <input type="number" name="impact_{{ leaf.id }}" class="form-control" step="any" min="0"
+                    value="{{ '' if leaf.impact is none else leaf.impact }}">
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary">Recalculate</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% if results_available %}
+<div class="row g-4 mb-4">
+  <div class="col-12 col-lg-6">
+    <div class="card shadow-sm h-100">
+      <div class="card-header bg-white d-flex justify-content-between">
+        <h5 class="mb-0">Attack Tree Visualization</h5>
+        <div>
+          <span class="badge bg-primary-subtle text-primary border">P(top): {{ '%0.5f' | format(p_top) }}</span>
+          <span class="badge bg-secondary-subtle text-secondary border ms-2">E[L]: £{{ '%0.5f' | format(e_loss)
+            }}</span>
+        </div>
+      </div>
+      <div class="card-body">
+        {% if png_path %}
+        <img src="{{ url_for('static', filename=png_path) }}" class="img-fluid border rounded"
+          alt="Attack tree visualisation">
+        {% else %}
+        <div class="text-muted">No visual yet.</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-6">
+    <div class="vstack gap-3">
+
+      <!-- KPI card: always visible headline stats -->
+      <div class="card">
+        <div class="card-header"><strong>Summary</strong></div>
+        <div class="card-body">
+          <div class="row text-center g-3">
+            <div class="col-6">
+              <div class="text-muted small">P(top)</div>
+              <div class="display-6">{{ p_top|pct(2) }}</div>
+            </div>
+            <div class="col-6">
+              <div class="text-muted small">E[L]</div>
+              <div class="display-6">{{ e_loss|currency }}</div>
+            </div>
+          </div>
+          <div class="small text-muted mt-2">
+            P(top) = AND/OR composition. E[L] = Σ(leaf p × £).<br>
+            <button id="formulaHelpBtn" type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="popover"
+              data-bs-trigger="onclick" aria-label="Show formulas">
+              Show formulas and methodology
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Hidden formulas content (MathJax will render when popover opens) -->
+      <div id="formulaHelpContent" class="d-none">
+        {% raw %}
+        <p><em>Notation:</em> \(P(n)\) = probability node \(n\) succeeds.
+          Leaves have probability \(p_i\) and monetary impact \(I_i\) (GBP).</p>
+
+        <p><strong>AND gate</strong> (all children must succeed):</p>
+        \[
+        P_{\text{AND}}(n) = \prod_{c \in \text{children}(n)} P(c)
+        \]
+
+        <p><strong>OR gate</strong> (any child can succeed):</p>
+        \[
+        P_{\text{OR}}(n) = 1 - \prod_{c \in \text{children}(n)} \bigl(1 - P(c)\bigr)
+        \]
+
+        <p><strong>Top event</strong> (root):</p>
+        \[
+        P(\text{top}) = 1 - \prod_{b=1}^{B} \bigl(1 - P(b)\bigr)
+        \]
+
+        <p><strong>Expected loss</strong> (additive leaf approximation):</p>
+        \[
+        \mathbb{E}[L] = \sum_{i \in \text{leaves}} p_i \, I_i
+        \]
+
+        <p><strong>Leaf contribution</strong> (Top Contributors):</p>
+        \[
+        C_i = p_i \, I_i, \qquad \%\,\text{of total} = \frac{C_i}{\mathbb{E}[L]}
+        \]
+
+        <p><strong>Sensitivity analysis</strong> (multiply one input; recompute):</p>
+        \[
+        p'_k = \min\!\bigl(1,\, m\, p_k\bigr) \quad\text{or}\quad I'_k = m\, I_k
+        \]
+        \[
+        \mathbb{E}'[L] = \sum_i p'_i \, I'_i, \qquad P'(\text{top}) \text{ via the same AND/OR rules}
+        \]
+        {% endraw %}
+        <p class="text-muted mb-0 small">We use a simple additive expected-loss model; scope leaves to avoid
+          double-counting overlapping costs.</p>
+      </div>
+      <!-- Top contributors (unchanged, now sits below the KPI card) -->
+      <div class="card">
+        <div class="card-header"><strong>Top Contributors</strong></div>
+        <div class="card-body">
+          <table class="table table-sm">
+            <thead class="table-light">
+              <tr>
+                <th>ID</th>
+                <th>Label</th>
+                <th class="text-end">Contribution</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in top3 %}
+              <tr>
+                <td>{{ item.id }}</td>
+                <td class="label-wrap">{{ item.label }}</td>
+                <td class="text-end">
+                  {{ item.value|currency }}
+                  <span class="text-muted">
+                    ({{ (0 if e_loss==0 else item.value/e_loss)|pct(1) }})
+                  </span>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="small text-muted">Contribution = leaf probability × leaf impact.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endif %}
+
+<div class="card shadow-sm">
+  <div class="card-header bg-white">
+    <h5 class="mb-0">Sensitivity Analysis</h5>
+  </div>
+  <div class="card-body">
+    <form method="post" action="{{ url_for('main.run_sensitivity') }}" class="row g-3 align-items-end">
+      <div class="col-md-5">
+        <label for="leaf_id" class="form-label">Leaf</label>
+        <select name="leaf_id" id="leaf_id" class="form-select">
+          {% for leaf in leaves %}
+          <option value="{{ leaf.id }}">{{ leaf.label }} ({{ leaf.id }})</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="multiplier" class="form-label">Multiplier</label>
+        <input type="number" name="multiplier" id="multiplier" class="form-control" min="0" step="any" value="2">
+      </div>
+      <div class="col-md-4">
+        <button type="submit" class="btn btn-outline-primary">Run Sensitivity</button>
+      </div>
+    </form>
+
+    {% if sensitivity %}
+    <hr>
+    <div class="mt-2">
+      <h6 class="mb-1">Sensitivity Results for {{ sensitivity.leaf_id }} × {{ sensitivity.multiplier }}</h6>
+      <p class="mb-1"><strong>P(top)</strong>: {{ '%0.5f' | format(sensitivity.p_top) }}</p>
+      <p class="mb-3"><strong>E[L]</strong>: {{ '%0.5f' | format(sensitivity.e_loss) }}</p>
+      <form method="post" action="{{ url_for('main.apply_sensitivity') }}">
+        <button type="submit" class="btn btn-warning">Apply</button>
+      </form>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<div class="mt-3">
+  <a href="{{ url_for('main.index') }}" class="btn btn-link">Back Home</a>
+</div>
+{% endblock %}
+
+index.html
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="mb-3">Attack Tree Analyzer</h1>
+<p class="text-muted">Upload a YAML, JSON or XML attack tree specification or load one of the demo scenarios to begin
+  analysis.</p>
+
+<div class="row g-4">
+  <div class="col-12 col-lg-7">
+    <div class="card shadow-sm">
+      <div class="card-header bg-white">
+        <h5 class="mb-0">Upload & Analyze</h5>
+      </div>
+      <div class="card-body">
+        <form method="post" action="{{ url_for('main.analyze_post') }}" enctype="multipart/form-data" class="row gy-3">
+          <div class="col-12">
+            <label for="spec_file" class="form-label">Select specification file</label>
+            <input class="form-control" type="file" id="spec_file" name="spec_file" accept=".yaml,.yml,.json,.xml"
+              required>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">Upload and Analyze</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-5">
+    <div class="card shadow-sm">
+      <div class="card-header bg-white">
+        <h5 class="mb-0">Demo scenarios</h5>
+      </div>
+      <div class="card-body">
+        <p class="text-muted">
+          The following buttons load preconfigured attack trees representing a pre-digital or post-digital environment.
+          All leaf probabilities and impacts are initially unset (null) for you to populate.
+        </p>
+        <div class="d-grid gap-2">
+          <a href="{{ url_for('main.load_demo', scenario='pre') }}" class="btn btn-outline-primary">Load Pre-Digital
+            Demo</a>
+          <a href="{{ url_for('main.load_demo', scenario='post') }}" class="btn btn-outline-primary">Load Post-Digital
+            Demo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

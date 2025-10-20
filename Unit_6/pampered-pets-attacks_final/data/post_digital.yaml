@@ -1,0 +1,108 @@
+id: top_post
+label: Loss from disruption/compromise of online sales (post)
+type: OR
+children:
+- app
+- skim
+- dos
+- pci
+- auth
+- cloud_misconfig
+- secrets_leak
+- dep_comp
+nodes:
+- id: app
+  label: Application vulnerabilities exploited
+  type: OR
+  children:
+  - sqli
+  - xss
+- id: auth
+  label: Account takeover of customer/admin accounts
+  type: OR
+  children:
+  - weak_pw
+  - no_mfa
+- id: cloud_misconfig
+  label: Cloud storage/IAM misconfiguration exposes data
+  type: OR
+  children:
+  - public_bucket
+  - excessive_perms
+- id: dep_comp
+  label: Compromised package/dependency contaminates build
+  type: LEAF
+  prob: 0.15
+  impact: 3750.0
+- id: dos
+  label: Denial of service impacts storefront/checkout
+  type: AND
+  children:
+  - dos_event
+  - weak_waf_cdn
+- id: dos_event
+  label: Sustained traffic flood/exhaustion event
+  type: LEAF
+  prob: 0.4
+  impact: 16000.0
+- id: excessive_perms
+  label: Over-broad IAM role allows data exfiltration
+  type: LEAF
+  prob: 0.25
+  impact: 25000.0
+- id: no_mfa
+  label: No MFA on admin/staff accounts enables privilege abuse
+  type: LEAF
+  prob: 0.45
+  impact: 36000.0
+- id: pci
+  label: Residual PCI exposure/mis-scoped handling
+  type: LEAF
+  prob: 0.1
+  impact: 10000.0
+- id: public_bucket
+  label: Order/PII bucket publicly readable/listable
+  type: LEAF
+  prob: 0.2
+  impact: 15000.0
+- id: secrets_leak
+  label: Leaked API keys/CI secrets enable unauthorized changes
+  type: LEAF
+  prob: 0.15
+  impact: 9000.0
+- id: skim
+  label: Checkout web-skimming on client side
+  type: AND
+  children:
+  - third_js
+  - weak_controls
+- id: sqli
+  label: SQL injection compromises data/state
+  type: LEAF
+  prob: 0.3
+  impact: 27000.0
+- id: third_js
+  label: Third-party JS dependency loaded at checkout
+  type: LEAF
+  prob: 0.1
+  impact: 5000.0
+- id: weak_controls
+  label: Weak CSP/SRI/monitoring fails to detect injection
+  type: LEAF
+  prob: 0.35
+  impact: 24500.0
+- id: weak_pw
+  label: Weak password policy / credential stuffing succeeds
+  type: LEAF
+  prob: 0.6
+  impact: 48000.0
+- id: weak_waf_cdn
+  label: Weak WAF/CDN/auto-scale → prolonged outage
+  type: LEAF
+  prob: 0.25
+  impact: 25000.0
+- id: xss
+  label: Cross-site scripting enables session theft/defacement
+  type: LEAF
+  prob: 0.3
+  impact: 13500.0
